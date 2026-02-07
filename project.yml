@@ -1,0 +1,119 @@
+# XcodeGen – run: xcodegen generate
+name: BaseIOSApp
+options:
+  bundleIdPrefix: com.tomthecat
+  deploymentTarget:
+    iOS: "15.0"
+  xcodeVersion: "15.0"
+  generateEmptyDirectories: true
+postGenCommand: pod install
+packages:
+  Swinject:
+    url: https://github.com/Swinject/Swinject
+    from: "2.8.0"
+  RealmSwift:
+    url: https://github.com/realm/realm-swift
+    from: "10.40.0"
+  Alamofire:
+    url: https://github.com/Alamofire/Alamofire
+    from: "5.9.0"
+  Kingfisher:
+    url: https://github.com/onevcat/Kingfisher
+    from: "7.0.0"
+targets:
+  BaseIOSApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+        name: App
+      - path: Core
+        name: Core
+      - path: UIFoundation
+        name: UIFoundation
+      - path: Features
+        name: Features
+      - path: Resources
+        name: Resources
+        type: group
+    settings:
+      base: Config/Shared.xcconfig
+      configFiles:
+        Debug: Config/Dev.xcconfig
+        Release: Config/Production.xcconfig
+      PRODUCT_BUNDLE_IDENTIFIER: com.tomthecat.baseIOSApp
+      INFOPLIST_FILE: BaseIOSApp/Info.plist
+      CODE_SIGN_STYLE: Automatic
+    dependencies:
+      - package: Swinject
+        product: Swinject
+      - package: RealmSwift
+        product: RealmSwift
+      - package: Alamofire
+        product: Alamofire
+      - package: Kingfisher
+        product: Kingfisher
+    preBuildScripts:
+      - name: SwiftGen
+        script: |
+          if [ -f "${PODS_ROOT}/SwiftGen/bin/swiftgen" ]; then
+            "${PODS_ROOT}/SwiftGen/bin/swiftgen" config run --config "${PROJECT_DIR}/Resources/SwiftGen/swiftgen.yml"
+          else
+            echo "warning: SwiftGen not installed"
+          fi
+    postBuildScripts:
+      - name: SwiftLint
+        script: |
+          if [ -f "${PODS_ROOT}/SwiftLint/swiftlint" ]; then
+            "${PODS_ROOT}/SwiftLint/swiftlint" || true
+          else
+            echo "warning: SwiftLint not installed"
+          fi
+    info:
+      path: BaseIOSApp/Info.plist
+      generate: false
+      properties:
+        UILaunchStoryboardName: LaunchScreen
+        UISupportedInterfaceOrientations: [UIInterfaceOrientation.portrait, UIInterfaceOrientation.landscapeLeft, UIInterfaceOrientation.landscapeRight]
+  BaseIOSAppTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests/UnitTests
+        name: BaseIOSAppTests
+    dependencies:
+      - target: BaseIOSApp
+      - package: Swinject
+        product: Swinject
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.tomthecat.baseIOSAppTests
+      GENERATE_INFOPLIST_FILE: YES
+  BaseIOSAppUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: Tests/UITests
+        name: BaseIOSAppUITests
+    dependencies:
+      - target: BaseIOSApp
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.tomthecat.baseIOSAppUITests
+      GENERATE_INFOPLIST_FILE: YES
+schemes:
+  BaseIOSApp:
+    build:
+      targets:
+        BaseIOSApp: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - BaseIOSAppTests
+        - BaseIOSAppUITests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release

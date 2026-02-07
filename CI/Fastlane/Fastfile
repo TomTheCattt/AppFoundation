@@ -1,0 +1,46 @@
+# Fastlane – BaseIOSApp
+# Run from project root: fastlane [lane]
+# Requires: xcode-select, Xcode, optional: swiftlint (brew install swiftlint)
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Run unit tests"
+  lane :test do
+    run_tests(
+      scheme: "BaseIOSApp",
+      destination: "platform=iOS Simulator,name=iPhone 16",
+      output_directory: "./build/test_output",
+      output_style: "basic"
+    )
+  end
+
+  desc "Run SwiftLint"
+  lane :lint do
+    if system("which swiftlint > /dev/null 2>&1")
+      swiftlint(
+        config_file: "./Scripts/SwiftLint/.swiftlint.yml",
+        strict: false
+      )
+    else
+      UI.important("SwiftLint not installed. Run: brew install swiftlint")
+    end
+  end
+
+  desc "Build the app (no archive)"
+  lane :build do
+    build_app(
+      scheme: "BaseIOSApp",
+      destination: "generic/platform=iOS",
+      skip_archive: true,
+      output_directory: "./build",
+      output_name: "BaseIOSApp.app"
+    )
+  end
+
+  desc "Run lint then test"
+  lane :ci do
+    lint
+    test
+  end
+end

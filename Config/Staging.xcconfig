@@ -1,0 +1,5 @@
+#include "Shared.xcconfig"
+
+API_BASE_URL = https://staging-api.example.com
+ENABLE_LOGGING = YES
+ENABLE_MOCK_SERVER = NO

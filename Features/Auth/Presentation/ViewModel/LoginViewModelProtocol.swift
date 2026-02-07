@@ -1,0 +1,13 @@
+//
+//  LoginViewModelProtocol.swift
+//  BaseIOSApp
+//
+
+import Foundation
+import Combine
+
+protocol LoginViewModelProtocol: AnyObject {
+    var statePublisher: AnyPublisher<AuthViewState, Never> { get }
+    var isLoadingPublisher: AnyPublisher<Bool, Never> { get }
+    func login(email: String, password: String)
+}

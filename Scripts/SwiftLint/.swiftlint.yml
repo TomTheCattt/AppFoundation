@@ -1,0 +1,11 @@
+disabled_rules:
+  - line_length
+  - trailing_whitespace
+opt_in_rules:
+  - empty_count
+  - force_unwrapping
+excluded:
+  - DerivedData
+  - Carthage
+  - Pods
+  - SwiftGen/Generated

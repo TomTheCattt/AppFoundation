@@ -1,0 +1,32 @@
+# CI – build, lint, test on push and PR
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve SPM
+        run: xcodebuild -resolvePackageDependencies -scheme BaseIOSApp -project BaseIOSApp.xcodeproj
+
+      - name: Build
+        run: xcodebuild build -scheme BaseIOSApp -destination 'platform=iOS Simulator,name=iPhone 16' -quiet CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO
+
+      - name: Run tests
+        run: xcodebuild test -scheme BaseIOSApp -destination 'platform=iOS Simulator,name=iPhone 16' -quiet CODE_SIGN_IDENTITY="-"
+
+  lint:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install SwiftLint
+        run: brew install swiftlint
+      - name: Lint
+        run: swiftlint lint --config Scripts/SwiftLint/.swiftlint.yml --path App Core UIFoundation Features Tests
