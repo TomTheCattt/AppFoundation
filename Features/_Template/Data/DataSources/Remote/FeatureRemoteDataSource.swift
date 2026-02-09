@@ -77,5 +77,3 @@ final class FeatureRemoteDataSource: FeatureRemoteDataSourceProtocol {
         return response.data
     }
 }
-
-private struct EmptyResponse: Codable {}

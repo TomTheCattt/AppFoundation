@@ -165,6 +165,14 @@ xcodebuild test -workspace BaseIOSApp.xcworkspace -scheme BaseIOSAppUITests -des
 - **SwiftLint** - Enforces Swift style and conventions
 - **XcodeGen** - Generates Xcode project from YAML configuration
 
+## 🔮 Feature Generation
+1.  **Template File**: `Docs/FeatureGenerationPrompt.md` is the master template for creating new features.
+2.  **Workflow**:
+    -   Provide the Agent with `Docs/FeatureGenerationPrompt.md`.
+    -   Agent will ask for: Framework (UIKit/SwiftUI), UI Requirements, Data Model, Actions, Edge Cases.
+    -   Agent generates Domain, Data (API-only), Presentation layers, and Tests.
+3.  **Example**: See `Features/TodoTracker` for a generated feature example.
+
 ## 📝 Code Style
 
 The project uses SwiftLint to enforce consistent code style. All public/internal functions include comprehensive documentation comments with parameter descriptions and usage examples.

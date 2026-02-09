@@ -7,28 +7,31 @@ import Foundation
 
 enum AuthEndpoint {
     case login(email: String, password: String)
+    case register(email: String, password: String)
     case logout
     case refresh(refreshToken: String)
 
+    /// Paths relative to base URL (base already includes /api/v1 per BackendIntegrationGuide).
     var path: String {
         switch self {
-        case .login: return "/api/v1/auth/login"
-        case .logout: return "/api/v1/auth/logout"
-        case .refresh: return "/api/v1/auth/refresh"
+        case .login: return "/auth/login"
+        case .register: return "/auth/register"
+        case .logout: return "/auth/logout"
+        case .refresh: return "/auth/refresh"
         }
     }
 
     var method: HTTPMethod {
         switch self {
-        case .login: return .post
-        case .logout: return .post
-        case .refresh: return .post
+        case .login, .register, .logout, .refresh: return .post
         }
     }
 
     var body: Data? {
         switch self {
         case .login(let email, let password):
+            return try? JSONEncoder().encode(LoginRequestDTO(email: email, password: password))
+        case .register(let email, let password):
             return try? JSONEncoder().encode(LoginRequestDTO(email: email, password: password))
         case .logout: return nil
         case .refresh(let token):

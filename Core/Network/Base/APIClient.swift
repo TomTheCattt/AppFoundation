@@ -59,7 +59,7 @@ final class APIClient: APIClientProtocol {
             request = try await interceptor.adapt(request)
         }
         
-        // Check for mock response in mock environment
+        // Check for mock response in mock environment (mock trả raw body, không envelope)
         if AppEnvironment.current == .mock,
            let url = request.url,
            let mock = MockServerManager.shared.mockResponse(for: url) {
@@ -75,16 +75,30 @@ final class APIClient: APIClientProtocol {
             let data = try await dataTask.value
             let response = await dataTask.response
             
-            // Handle response through interceptors
             if let httpResponse = response.response {
                 for interceptor in interceptors {
                     try await interceptor.handleResponse(httpResponse, data: data)
                 }
             }
             
-            // Decode and return
-            return try decoder.decode(T.self, from: data)
+            // Backend format chuẩn: { success: true, data: T }
+            let envelope = try decoder.decode(APIResponseEnvelope<T>.self, from: data)
+            if !envelope.success, let err = envelope.error {
+                throw NetworkError.serverError(statusCode: 200, message: err.message, apiCode: err.code)
+            }
+            if let payload = envelope.data {
+                return payload
+            }
             
+            // Allow empty data for EmptyResponse type
+            if T.self == EmptyResponse.self {
+                return EmptyResponse() as! T
+            }
+            
+            throw NetworkError.decodingFailed(DecodingError.keyNotFound(
+                APIResponseEnvelope<T>.CodingKeys.data,
+                DecodingError.Context(codingPath: [], debugDescription: "Missing data in success response")
+            ))
         } catch let afError as AFError {
             Logger.shared.error("Alamofire request failed: \(afError)")
             throw mapAlamofireError(afError, data: await dataTask.response.data)
@@ -129,22 +143,30 @@ final class APIClient: APIClientProtocol {
         }
     }
     
-    /// Maps HTTP status codes to NetworkError
-    /// - Parameters:
-    ///   - code: HTTP status code
-    ///   - data: Response data for extracting error messages
-    /// - Returns: Corresponding NetworkError
+    /// Maps HTTP status codes to NetworkError. Parse body chuẩn: { success: false, error: { code, message } }.
     private func mapStatusCode(_ code: Int, data: Data) -> NetworkError {
+        let (message, apiCode) = parseErrorBody(data)
         switch code {
         case 401:
-            return .unauthorized
+            return .unauthorized(apiCode: apiCode)
         case 403:
-            return .forbidden
+            return .forbidden(apiCode: apiCode)
         case 404:
-            return .notFound
+            return .notFound(apiCode: apiCode)
         default:
-            let message = (try? JSONSerialization.jsonObject(with: data) as? [String: Any])?["message"] as? String
-            return .serverError(statusCode: code, message: message)
+            return .serverError(statusCode: code, message: message, apiCode: apiCode)
         }
+    }
+
+    /// Parse body lỗi chuẩn: { success: false, error: { code, message } }.
+    private func parseErrorBody(_ data: Data) -> (message: String?, apiCode: String?) {
+        guard let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+              let error = json["error"] as? [String: Any] else {
+            let msg = (try? JSONSerialization.jsonObject(with: data) as? [String: Any])?["message"] as? String
+            return (msg, nil)
+        }
+        let message = error["message"] as? String
+        let code = error["code"] as? String
+        return (message, code)
     }
 }

@@ -37,5 +37,13 @@ final class AuthAssembly: Assembly {
                 logger: r.resolve(Logger.self)!
             )
         }
+
+        container.register(RegisterUseCaseProtocol.self) { r in
+            RegisterUseCase(
+                repository: r.resolve(AuthRepositoryProtocol.self)!,
+                tokenStore: r.resolve(TokenStoreProtocol.self)!,
+                logger: r.resolve(Logger.self)!
+            )
+        }
     }
 }

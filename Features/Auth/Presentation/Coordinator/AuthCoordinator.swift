@@ -32,6 +32,20 @@ final class AuthCoordinator: BaseCoordinator, AuthCoordinatorProtocol {
         navigationController.setViewControllers([vc], animated: false)
     }
 
+    func showRegister() {
+        let viewModel = makeRegisterViewModel()
+        let vc = RegisterViewController(viewModel: viewModel, coordinator: self)
+        navigationController.pushViewController(vc, animated: true)
+    }
+
+    private func makeRegisterViewModel() -> RegisterViewModel {
+        let registerUseCase: RegisterUseCaseProtocol = container.resolve(RegisterUseCaseProtocol.self)
+        let logger: Logger = container.resolve(Logger.self)
+        return RegisterViewModel(registerUseCase: registerUseCase, logger: logger) { [weak self] in
+            self?.didFinishAuthSuccess()
+        }
+    }
+
     private func makeLoginViewModel() -> LoginViewModel {
         let loginUseCase: LoginUseCaseProtocol = container.resolve(LoginUseCaseProtocol.self)
         let logger: Logger = container.resolve(Logger.self)

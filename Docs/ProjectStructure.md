@@ -556,12 +556,9 @@ Design system, navigation, base UI (UIKit + SwiftUI), accessibility.
 
 | File | Trách nhiệm | Cách dùng |
 |------|-------------|-----------|
-| **Architecture.md** | Tổng quan kiến trúc (layer, DI, UI). | Onboarding, review. |
-| **CodingGuidelines.md** | Convention code. | Review, refactor. |
-| **SetupGuide.md** | Cài đặt, chạy app, env. | Dev mới. |
-| **Phase1-Checklist.md** | Checklist Phase 1. | Theo dõi scope. |
-| **TEST_PLAN.md** | Test hiện có + kế hoạch bổ sung. | Mở rộng test. |
-| **PROJECT_STRUCTURE_README.md** | File này – hướng dẫn từng folder/file. | Instruction sử dụng từng phần. |
+| **ProjectStructure.md** | Hướng dẫn cấu trúc dự án. | Tham khảo khi tìm hiểu folder structure. |
+| **BackendIntegrationGuide.md** | Hướng dẫn tích hợp Backend và Database Schema. | Cho Backend Developer/Agent. |
+| **FeatureGenerationPrompt.md** | Template tạo feature mới. | Dùng với Agent. |
 
 ---
 

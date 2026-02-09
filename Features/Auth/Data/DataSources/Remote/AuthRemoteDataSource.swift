@@ -7,6 +7,7 @@ import Foundation
 
 protocol AuthRemoteDataSourceProtocol {
     func login(email: String, password: String) async throws -> LoginResponseDTO
+    func register(email: String, password: String) async throws -> LoginResponseDTO
     func logout() async throws
 }
 
@@ -32,19 +33,44 @@ final class AuthRemoteDataSource: AuthRemoteDataSourceProtocol {
                 AuthEndpoint.login(email: email, password: password).endpoint,
                 responseType: LoginResponseDTO.self
             )
+        } catch let ne as NetworkError {
+            logger.error("AuthRemoteDataSource login failed: \(ne)")
+            if ne.apiCode == "INVALID_CREDENTIALS" { throw AuthError.invalidCredentials }
+            throw AuthError.from(ne)
         } catch {
             logger.error("AuthRemoteDataSource login failed: \(error)")
-            if (error as NSError).code == 401 { throw AuthError.invalidCredentials }
+            throw AuthError.from(error)
+        }
+    }
+
+    func register(email: String, password: String) async throws -> LoginResponseDTO {
+        if AppEnvironment.current == .mock {
+            return LoginResponseDTO(
+                accessToken: "mock_access_\(UUID().uuidString)",
+                refreshToken: nil,
+                expiresIn: 3600,
+                user: nil
+            )
+        }
+        do {
+            return try await apiClient.request(
+                AuthEndpoint.register(email: email, password: password).endpoint,
+                responseType: LoginResponseDTO.self
+            )
+        } catch let ne as NetworkError {
+            logger.error("AuthRemoteDataSource register failed: \(ne)")
+            if ne.apiCode == "CONFLICT" { throw AuthError.emailAlreadyRegistered }
+            throw AuthError.from(ne)
+        } catch {
+            logger.error("AuthRemoteDataSource register failed: \(error)")
             throw AuthError.from(error)
         }
     }
 
     func logout() async throws {
-        _ = try? await apiClient.request(
+        _ = try await apiClient.request(
             AuthEndpoint.logout.endpoint,
-            responseType: EmptyAuthResponse.self
+            responseType: EmptyResponse.self
         )
     }
 }
-
-private struct EmptyAuthResponse: Decodable {}

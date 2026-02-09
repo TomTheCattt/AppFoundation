@@ -26,5 +26,7 @@
 		<string>UIInterfaceOrientation.landscapeLeft</string>
 		<string>UIInterfaceOrientation.landscapeRight</string>
 	</array>
+	<key>API_BASE_URL</key>
+	<string>http://localhost:3000</string>
 </dict>
 </plist>

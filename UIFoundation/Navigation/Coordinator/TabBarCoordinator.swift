@@ -37,24 +37,38 @@ final class TabBarCoordinator: BaseCoordinator {
 
         let homeCoordinator = createHomeCoordinator()
         let searchCoordinator = createSearchCoordinator()
+        let todoCoordinator = createTodoTrackerCoordinator()
         let profileCoordinator = createProfileCoordinator()
 
         addChild(homeCoordinator)
         addChild(searchCoordinator)
+        addChild(todoCoordinator)
         addChild(profileCoordinator)
 
         homeCoordinator.start()
         searchCoordinator.start()
+        todoCoordinator.start()
         profileCoordinator.start()
 
         tabBarController.viewControllers = [
             homeCoordinator.navigationController,
             searchCoordinator.navigationController,
+            todoCoordinator.navigationController,
             profileCoordinator.navigationController
         ]
 
         self.tabBarController = tabBarController
         navigationController.setViewControllers([tabBarController], animated: false)
+    }
+
+    private func createTodoTrackerCoordinator() -> Coordinator {
+        let nav = BaseNavigationController()
+        nav.tabBarItem = UITabBarItem(
+            title: "Todos",
+            image: UIImage(systemName: "checkmark.circle"),
+            selectedImage: UIImage(systemName: "checkmark.circle.fill")
+        )
+        return TodoTrackerCoordinator(navigationController: nav, diContainer: container)
     }
 
     private func createHomeCoordinator() -> Coordinator {

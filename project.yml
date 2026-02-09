@@ -6,6 +6,10 @@ options:
     iOS: "15.0"
   xcodeVersion: "15.0"
   generateEmptyDirectories: true
+configs:
+  Debug: debug
+  Release: release
+  Local: debug
 postGenCommand: pod install
 packages:
   Swinject:
@@ -41,6 +45,7 @@ targets:
       configFiles:
         Debug: Config/Dev.xcconfig
         Release: Config/Production.xcconfig
+        Local: Config/Local.xcconfig
       PRODUCT_BUNDLE_IDENTIFIER: com.tomthecat.baseIOSApp
       INFOPLIST_FILE: BaseIOSApp/Info.plist
       CODE_SIGN_STYLE: Automatic
@@ -117,3 +122,20 @@ schemes:
       config: Debug
     archive:
       config: Release
+  "BaseIOSApp (Local)":
+    build:
+      targets:
+        BaseIOSApp: all
+    run:
+      config: Local
+    test:
+      config: Local
+      targets:
+        - BaseIOSAppTests
+        - BaseIOSAppUITests
+    profile:
+      config: Local
+    analyze:
+      config: Local
+    archive:
+      config: Local
