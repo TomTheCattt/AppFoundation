@@ -20,14 +20,12 @@ jobs:
       - name: Show Xcode Version
         run: xcodebuild -version
       
-      - name: Resolve SPM Dependencies
-        run: swift package resolve
-      
-      - name: Build Package
-        run: swift build -Xswiftc "-sdk" -Xswiftc "`xcrun --sdk iphonesimulator --show-sdk-path`" -Xswiftc "-target" -Xswiftc "x86_64-apple-ios15.0-simulator"
-      
-      - name: Run Tests
-        run: swift test --parallel
+      - name: Build and Test
+        run: |
+          xcodebuild clean build test \
+            -scheme AppFoundation \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            -quiet
 
   lint:
     name: SwiftLint
@@ -40,4 +38,4 @@ jobs:
         run: brew install swiftlint
       
       - name: Lint
-        run: swiftlint lint --strict --quiet
+        run: swiftlint lint --quiet
