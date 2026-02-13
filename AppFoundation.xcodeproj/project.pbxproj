@@ -1568,7 +1568,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6AF90FDDB4EEEBE087D725B8 /* Build configuration list for PBXNativeTarget "AppFoundation" */;
 			buildPhases = (
-				97C116DC1B2A39E897258B9D /* SwiftGen */,
 				D2BD9AC4536A00E91F22FFC7 /* Sources */,
 				9AFEB7B8DB6511896ABCB1DE /* Resources */,
 				55FFB141EBA897E6DDF9CC59 /* Frameworks */,
@@ -1684,24 +1683,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ -f \"${PODS_ROOT}/SwiftLint/swiftlint\" ]; then\n  \"${PODS_ROOT}/SwiftLint/swiftlint\" || true\nelse\n  echo \"warning: SwiftLint not installed\"\nfi\n";
-		};
-		97C116DC1B2A39E897258B9D /* SwiftGen */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftGen;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]; then\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" config run --config \"${PROJECT_DIR}/Resources/SwiftGen/swiftgen.yml\"\nelse\n  echo \"warning: SwiftGen not installed\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

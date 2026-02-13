@@ -57,6 +57,11 @@ identifier_name:
     - URL
     - x
     - y
+    - r
+    - g
+    - b
+    - v
+    - l
 
 type_name:
     min_length: 3

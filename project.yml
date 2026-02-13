@@ -57,14 +57,6 @@ targets:
         product: Alamofire
       - package: Kingfisher
         product: Kingfisher
-    preBuildScripts:
-      - name: SwiftGen
-        script: |
-          if [ -f "${PODS_ROOT}/SwiftGen/bin/swiftgen" ]; then
-            "${PODS_ROOT}/SwiftGen/bin/swiftgen" config run --config "${PROJECT_DIR}/Resources/SwiftGen/swiftgen.yml"
-          else
-            echo "warning: SwiftGen not installed"
-          fi
     postBuildScripts:
       - name: SwiftLint
         script: |
