@@ -1,209 +1,68 @@
-# BaseIOSApp
+# BaseIOSApp Platform 🚀
 
-A comprehensive iOS application template built with Clean Architecture, featuring modern networking with Alamofire, efficient image loading with Kingfisher, and extensive utility extensions.
-
-## 📋 Project Overview
-
-BaseIOSApp is a production-ready iOS application template that demonstrates best practices in iOS development. The project follows Clean Architecture principles with clear separation of concerns across Domain, Data, and Presentation layers.
-
-### Key Features
-
-- ✅ **Clean Architecture** - Modular, testable, and maintainable code structure
-- ✅ **Alamofire Integration** - Robust HTTP networking with interceptor support
-- ✅ **Kingfisher Integration** - Efficient async image loading and caching
-- ✅ **Comprehensive Extensions** - 17+ utility extension files for rapid development
-- ✅ **Dependency Injection** - Swinject for IoC container
-- ✅ **Local Storage** - Realm for persistence, in-memory database for testing
-- ✅ **Code Generation** - SwiftGen for type-safe resources
-- ✅ **Code Quality** - SwiftLint for consistent code style
-
-## 🗂️ Project Structure
-
-```
-BaseIOSApp/
-├── App/                    # Application entry point and configuration
-│   ├── Application/        # AppDelegate, SceneDelegate
-│   └── DI/                 # Dependency injection setup
-├── Core/                   # Core business logic and utilities
-│   ├── Network/            # Networking layer (Alamofire-based)
-│   ├── Storage/            # Data persistence (Realm, InMemory)
-│   ├── Mock/               # Mock server for testing
-│   └── Utils/              # Extensions and helpers
-├── Features/               # Feature modules (Clean Architecture)
-│   ├── Auth/               # Authentication feature
-│   ├── Feature/            # Template feature module
-│   └── _Template/          # Feature template for new modules
-├── UIFoundation/           # Reusable UI components
-│   ├── DesignSystem/       # Colors, typography, spacing
-│   ├── UIKit/              # UIKit components
-│   ├── SwiftUI/            # SwiftUI components
-│   └── Extensions/         # UI-related extensions
-├── Resources/              # Assets, localizations, generated code
-└── Tests/                  # Unit and UI tests
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Xcode 15.0+
-- iOS 15.0+
-- CocoaPods (for SwiftGen and SwiftLint)
-- Swift Package Manager (for dependencies)
-
-### Installation
-
-1. Clone the repository
-2. Run `xcodegen generate` to generate the Xcode project
-3. Run `pod install` to install development tools
-4. Open `BaseIOSApp.xcworkspace`
-5. Build and run (⌘R)
-
-## 📚 Libraries & Dependencies
-
-### Networking - Alamofire
-
-Alamofire provides a robust HTTP networking layer with features like request/response interceptors, automatic retry, and comprehensive error handling.
-
-**Usage Example:**
-```swift
-// APIClient automatically uses Alamofire
-let client = APIClient(interceptors: [AuthInterceptor(), LoggingInterceptor()])
-let response = try await client.request(endpoint, responseType: MyModel.self)
-```
-
-### Image Loading - Kingfisher
-
-Kingfisher handles async image loading with automatic caching and memory management.
-
-**Usage Example:**
-```swift
-// Using the UIImageView extension
-imageView.setImage(with: imageURL, placeholder: UIImage(systemName: "photo"))
-
-// With custom options
-imageView.setImage(
-    with: imageURL,
-    placeholder: placeholderImage,
-    options: [.transition(.fade(0.3)), .cacheOriginalImage]
-)
-```
-
-## 🛠️ Utility Extensions
-
-The project includes 17+ comprehensive extension files with both basic and advanced helpers:
-
-### UIKit Extensions
-
-- **UIView+Extensions** - Layout, styling, animations (shake, pulse, fade, gradient)
-- **UIColor+Extensions** - Hex colors, color manipulation, complementary colors
-- **UIViewController+Extensions** - Alerts, child VCs, keyboard handling, loading indicators
-- **UITableView+Extensions** - Type-safe cell registration/dequeuing
-- **UICollectionView+Extensions** - Type-safe cell registration/dequeuing
-- **UIImageView+Extensions** - Kingfisher integration
-
-### Foundation Extensions
-
-- **Array+Extensions** - Safe access, chunking, async map/compactMap
-- **Date+Extensions** - Formatting, comparisons, "time ago" strings
-- **String+Extensions** - Validation (email), URL conversion, HTML handling
-- **Int+Extensions** - Formatting, ordinal, Roman numerals, abbreviation (1K, 1M)
-- **Double+Extensions** - Rounding, currency, percentage formatting
-- **Dictionary+Extensions** - Safe access, merging, key/value transformations
-- **Data+Extensions** - Hex strings, JSON conversion, pretty printing
-- **URL+Extensions** - Query parameters, reachability
-
-### Swift Standard Library
-
-- **Optional+Extensions** - Unwrapping helpers, nil checks
-- **Collection+Extensions** - Grouping, uniqueness
-- **Result+Extensions** - Success/failure checks, error mapping
-
-### Specialized
-
-- **Encodable+Extensions** - JSON dictionary conversion
-- **Decodable+Extensions** - Safe decoding
-- **Notification+Extensions** - Type-safe notification names
-
-## 🏗️ Architecture
-
-### Clean Architecture Layers
-
-1. **Domain Layer** - Business entities and use cases
-2. **Data Layer** - Repositories, DTOs, data sources
-3. **Presentation Layer** - ViewModels, Views, Coordinators
-
-### Feature Module Structure
-
-Each feature follows this structure:
-```
-Feature/
-├── Domain/
-│   ├── Entities/           # Business models
-│   └── UseCases/           # Business logic
-├── Data/
-│   ├── DTOs/               # Data transfer objects
-│   └── Repositories/       # Data access implementations
-└── Presentation/
-    ├── ViewModel/          # Presentation logic
-    └── View/               # UI components
-```
-
-## 🧪 Testing
-
-```bash
-# Run unit tests
-xcodebuild test -workspace BaseIOSApp.xcworkspace -scheme BaseIOSApp -destination 'platform=iOS Simulator,name=iPhone 16'
-
-# Run UI tests
-xcodebuild test -workspace BaseIOSApp.xcworkspace -scheme BaseIOSAppUITests -destination 'platform=iOS Simulator,name=iPhone 16'
-```
-
-## 🔧 Development Tools
-
-- **SwiftGen** - Generates type-safe code for assets and localizations
-- **SwiftLint** - Enforces Swift style and conventions
-- **XcodeGen** - Generates Xcode project from YAML configuration
-
-## 🔮 Feature Generation
-1.  **Template File**: `Docs/FeatureGenerationPrompt.md` is the master template for creating new features.
-2.  **Workflow**:
-    -   Provide the Agent with `Docs/FeatureGenerationPrompt.md`.
-    -   Agent will ask for: Framework (UIKit/SwiftUI), UI Requirements, Data Model, Actions, Edge Cases.
-    -   Agent generates Domain, Data (API-only), Presentation layers, and Tests.
-3.  **Example**: See `Features/TodoTracker` for a generated feature example.
-
-## 📝 Code Style
-
-The project uses SwiftLint to enforce consistent code style. All public/internal functions include comprehensive documentation comments with parameter descriptions and usage examples.
-
-## 🌍 Localization
-
-Localizations are managed in `Resources/Localization/` with support for:
-- English (en)
-- Vietnamese (vi)
-
-Use SwiftGen-generated strings:
-```swift
-let text = L10n.welcomeMessage
-```
-
-## 🎨 Design System
-
-The design system is centralized in `UIFoundation/DesignSystem/`:
-- **Colors** - Semantic color tokens
-- **Typography** - Font styles and sizes
-- **Spacing** - Consistent spacing values
-- **Icons** - SF Symbols catalog
-
-## 📄 License
-
-This project is a template for iOS development. Customize as needed for your projects.
-
-## 🤝 Contributing
-
-This is a template project. Fork and customize for your needs!
+**BaseIOSApp** không chỉ là một template, mà là một **"Hệ Điều Hành" (Platform)** dành cho việc phát triển ứng dụng iOS chuyên nghiệp. Nó được đóng gói dưới dạng **Swift Package** modular, giúp bạn khởi động dự án mới nhanh chóng với chuẩn mực kiến trúc cao nhất.
 
 ---
 
-**Built with ❤️ using Swift, Alamofire, Kingfisher, and modern iOS development practices**
+## 🌟 Tại Sao Chọn BaseIOSApp?
+
+- **Tăng Tốc 50%**: Bỏ qua các bước setup nhàm chán (Network, Auth, Logger, DI). Tập trung ngay vào Business Logic.
+- **Chuẩn Doanh Nghiệp**: Kiến trúc Clean Architecture, MVVM, Coordinator đã được kiểm chứng.
+- **Linh Hoạt Tuyệt Đối**: Không bị khóa cứng giao diện. Hệ thống Theme và Injection cho phép tùy biến mọi thứ.
+
+---
+
+## 📦 Các Module Chính & Tính Năng
+
+Package được chia thành 4 module độc lập, bạn có thể dùng tất cả hoặc chỉ chọn cái mình cần:
+
+### 1. 🧠 BaseIOSCore (Bộ Não)
+Xử lý logic nền tảng, hoàn toàn tách biệt với UI.
+-   **Smart Networking**: 
+    -   Tự động **Retry 3 lần** khi mạng chập chờn (Timeout, 5xx).
+    -   Tự động **Pause/Resume** request khi mất mạng/có mạng lại.
+-   **Lifecycle Management**: 
+    -   Tự động khởi tạo services (Logger, DI, Database) theo đúng thứ tự.
+    -   Xử lý Background/Foreground thông minh (dọn dẹp bộ nhớ, lưu state).
+-   **Security**: Quản lý Token và dữ liệu nhạy cảm trong **Keychain**.
+
+### 2. 🔐 BaseIOSAuth (Bảo Mật & Xác Thực)
+Giải quyết bài toán đau đầu nhất của mọi App: **Quản lý phiên đăng nhập**.
+-   **Auto-Login**: Tự động kiểm tra và verify session khi mở App.
+-   **Silent Refresh Token**: 
+    -   Khi Token hết hạn, hệ thống **âm thầm** lấy Token mới và thực hiện lại request.
+    -   Người dùng không bị gián đoạn, không bị văng ra Login.
+-   **Session Guard**: Tự động Logout và dọn dẹp data khi phiên làm việc thực sự kết thúc.
+
+### 3. 🎨 BaseIOSResources (Tài Nguyên)
+Trung tâm quản lý Assets và Design System.
+-   **Centralized Assets**: Quản lý toàn bộ Ảnh, Font, Màu, String tại một nơi.
+-   **Theme Engine**: 
+    -   Hỗ trợ **Override** toàn bộ giao diện (Màu sắc, Font chữ) từ App con.
+    -   Dễ dàng làm Dark Mode hoặc đổi Theme theo branding của đối tác.
+
+### 4. 🖥️ BaseIOSUI (Giao Diện)
+Bộ khung sườn UI vững chắc.
+-   **Base Architecture**: `BaseViewModel`, `BaseViewController` xử lý sẵn State (Loading, Error, Empty).
+-   **Flexible Loading**: Cho phép App con tự định nghĩa Loading View (Spinner, Skeleton, Lottie) và inject vào Base.
+
+---
+
+## 🛠️ Công Cụ Hỗ Trợ (Automation)
+
+Không chỉ có Code, BaseIOSApp còn cung cấp quy trình làm việc:
+-   **Feature Generator**: Tool CLI tạo module mới tự động (Domain/Data/Presentation) trong 3 giây.
+-   **CI/CD Pipeline**: Template GitHub Actions để tự động Test, Lint và Build.
+
+---
+
+## 📚 Tài Liệu Chi Tiết
+
+-   [Hướng Dẫn Sử Dụng (Package Usage)](Docs/PackageUsage.md)
+-   [Tính Năng Nâng Cao (Advanced Features)](Docs/AdvancedFeatures.md)
+-   [Quy Trình Git (Git Workflow)](Docs/GitWorkflow.md)
+-   [Automation & Tools](Docs/AutomationAndTools.md)
+
+---
+
+> **BaseIOSApp** - *Build faster, scale better.*

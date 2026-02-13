@@ -1,0 +1,5 @@
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Logging/NetworkLogger.swift:18:20: error: property cannot be declared public because its type uses an internal type
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Logging/NetworkLogger.swift:20:16: error: initializer cannot be declared public because its parameter uses an internal type
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Logging/NetworkLogger.swift:20:78: error: enum case 'debug' is internal and cannot be referenced from a default argument value
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Logging/NetworkLogger.swift:51:12: error: initializer cannot be declared public because its parameter uses an internal type
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Logging/NetworkLogger.swift:51:74: error: static property 'shared' is internal and cannot be referenced from a default argument value

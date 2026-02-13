@@ -1,0 +1,17 @@
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Interceptors/SmartRetrier.swift:12:5: error: expected declaration
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Interceptors/SmartRetrier.swift:12:5: error: expected '}' in class
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Base/APIClient.swift:49:28: error: 'any Interceptor' cannot be constructed because it has no accessible initializers
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Base/APIClient.swift:75:65: error: argument type 'any Interceptor' does not conform to expected type 'RequestInterceptor'
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Base/APIRouter.swift:13:9: error: property cannot be declared public because its type uses an internal type
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Interceptors/AuthInterceptor.swift:11:30: error: cannot find type 'RequestInterceptor' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Interceptors/AuthInterceptor.swift:23:55: error: cannot find type 'Session' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Interceptors/AuthInterceptor.swift:31:27: error: cannot find type 'Request' in scope
+    func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Interceptors/AuthInterceptor.swift:31:49: error: cannot find type 'Session' in scope
+    func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Interceptors/AuthInterceptor.swift:31:101: error: cannot find type 'RetryResult' in scope
+    func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Interceptors/AuthInterceptor.swift:33:25: error: cannot infer contextual base in reference to member 'doNotRetry'
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Interceptors/AuthInterceptor.swift:40:25: error: cannot infer contextual base in reference to member 'doNotRetry'
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Interceptors/AuthInterceptor.swift:46:25: error: cannot infer contextual base in reference to member 'retryWithDelay'
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSCore/Network/Interceptors/AuthInterceptor.swift:58:33: error: cannot infer contextual base in reference to member 'retry'

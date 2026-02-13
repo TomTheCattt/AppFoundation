@@ -1,0 +1,13 @@
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSAuth/Domain/UseCases/LoginUseCase.swift:15:29: error: cannot find type 'TokenStoreProtocol' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSAuth/Domain/UseCases/LoginUseCase.swift:18:58: error: cannot find type 'TokenStoreProtocol' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSAuth/Domain/UseCases/LogoutUseCase.swift:15:29: error: cannot find type 'TokenStoreProtocol' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSAuth/Domain/UseCases/LogoutUseCase.swift:18:58: error: cannot find type 'TokenStoreProtocol' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSAuth/Domain/UseCases/RegisterUseCase.swift:15:29: error: cannot find type 'TokenStoreProtocol' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSAuth/Domain/UseCases/RegisterUseCase.swift:18:58: error: cannot find type 'TokenStoreProtocol' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSAuth/Presentation/View/LoginViewController.swift:77:19: error: method does not override any method from its superclass
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSAuth/Presentation/View/RegisterViewController.swift:11:37: error: reference to generic type 'BaseViewController' requires arguments in <...>
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSAuth/Presentation/View/RegisterViewController.swift:12:17: error: overriding non-open property outside of its defining module
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSAuth/Presentation/View/RegisterViewController.swift:12:17: error: property 'viewModel' with type 'any RegisterViewModelProtocol' cannot override a property with type '<<error type>>'
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSAuth/Presentation/View/RegisterViewController.swift:33:58: error: type of expression is ambiguous without a type annotation
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSAuth/Presentation/View/RegisterViewController.swift:63:19: error: method does not override any method from its superclass
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSAuth/Domain/Entities/AuthError.swift:30:31: error: cannot find type 'NetworkError' in scope

@@ -1,0 +1,20 @@
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/Coordinator/AppCoordinator.swift:16:39: error: cannot find type 'DIContainer' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/Coordinator/AppCoordinator.swift:13:28: error: cannot find type 'DIContainer' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/Coordinator/AppCoordinator.swift:14:25: error: cannot find type 'Logger' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/Coordinator/TabBarCoordinator.swift:16:67: error: cannot find type 'DIContainer' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/Coordinator/TabBarCoordinator.swift:12:28: error: cannot find type 'DIContainer' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/Coordinator/TabBarCoordinator.swift:97:67: error: cannot find type 'DIContainer' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/Coordinator/TabBarCoordinator.swift:94:28: error: cannot find type 'DIContainer' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/Coordinator/TabBarCoordinator.swift:95:25: error: cannot find type 'Logger' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/Coordinator/TabBarCoordinator.swift:117:67: error: cannot find type 'DIContainer' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/Coordinator/TabBarCoordinator.swift:115:28: error: cannot find type 'DIContainer' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/Coordinator/TabBarCoordinator.swift:131:67: error: cannot find type 'DIContainer' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/Coordinator/TabBarCoordinator.swift:128:28: error: cannot find type 'DIContainer' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/DeepLink/DeepLinkHandler.swift:18:25: error: cannot find type 'Logger' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/DeepLink/DeepLinkHandler.swift:20:50: error: cannot find type 'Logger' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/DeepLink/DeepLinkParser.swift:16:25: error: cannot find type 'Logger' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/DeepLink/DeepLinkParser.swift:20:18: error: cannot find type 'Logger' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/DeepLink/UniversalLinkManager.swift:13:25: error: cannot find type 'Logger' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/DeepLink/UniversalLinkManager.swift:15:60: error: cannot find type 'Logger' in scope
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/PlaceholderViewController.swift:10:40: error: reference to generic type 'BaseViewController' requires arguments in <...>
+/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/PlaceholderViewController.swift:36:19: error: method does not override any method from its superclass
