@@ -44,7 +44,7 @@ final class InMemoryDatabase: LocalDatabaseProtocol, @unchecked Sendable {
     func delete<T: Storable>(_ object: T) async throws {
         queue.async {
             let key = String(describing: T.self)
-            self.storage[key] = (self.storage[key] as? [Any])?.filter { ($0 as? AnyObject) !== (object as? AnyObject) } ?? []
+            self.storage[key] = (self.storage[key])?.filter { ($0 as? AnyObject) !== (object as? AnyObject) } ?? []
         }
     }
 

@@ -22,8 +22,8 @@ final class NetworkAssembly: Assembly {
             return APIClient(interceptors: interceptors, decoder: decoder)
         }
 
-        container.register(APIClientProtocol.self) { r in
-            r.resolve(APIClient.self)!
+        container.register(APIClientProtocol.self) { register in
+            register.resolve(APIClient.self)!
         }.inObjectScope(.container)
 
         container.register(NetworkMonitorProtocol.self) { _ in

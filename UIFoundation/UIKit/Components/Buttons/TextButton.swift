@@ -9,6 +9,8 @@ import UIKit
 
 final class TextButton: UIButton {
 
+    // MARK: - Init
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -24,27 +26,64 @@ final class TextButton: UIButton {
         setTitle(title, for: .normal)
     }
 
+    // MARK: - Setup
+
     private func setup() {
-        backgroundColor = .clear
-        setTitleColor(DesignSystemColors.primary.uiColor, for: .normal)
-        setTitleColor(DesignSystemColors.textSecondary.uiColor, for: .disabled)
-        titleLabel?.font = DesignSystemTypography.bodyBold.font
+        translatesAutoresizingMaskIntoConstraints = false
 
-        contentEdgeInsets = UIEdgeInsets(
-            top: DesignSystemSpacing.xxs,
-            left: DesignSystemSpacing.xs,
-            bottom: DesignSystemSpacing.xxs,
-            right: DesignSystemSpacing.xs
-        )
-
-        addTarget(self, action: #selector(touchDown), for: .touchDown)
-        addTarget(self, action: #selector(touchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
+        setupConfiguration()
+        setupInteractions()
     }
 
-    override var isEnabled: Bool {
-        didSet {
-            alpha = isEnabled ? 1.0 : 0.5
+    // MARK: - Configuration (iOS 15+)
+
+    private func setupConfiguration() {
+        var config = UIButton.Configuration.plain()
+
+        config.baseBackgroundColor = .clear
+        config.baseForegroundColor = DesignSystemColors.primary.uiColor
+
+        config.contentInsets = NSDirectionalEdgeInsets(
+            top: DesignSystemSpacing.xxs,
+            leading: DesignSystemSpacing.xs,
+            bottom: DesignSystemSpacing.xxs,
+            trailing: DesignSystemSpacing.xs
+        )
+
+        configuration = config
+
+        configurationUpdateHandler = { button in
+
+            // Font
+            button.configuration?.attributedTitle =
+                AttributedString(
+                    button.currentTitle ?? "",
+                    attributes: AttributeContainer([
+                        .font: DesignSystemTypography.bodyBold.font
+                    ])
+                )
+
+            // Text color state
+            let textColor = button.isEnabled
+                ? DesignSystemColors.primary.uiColor
+                : DesignSystemColors.textSecondary.uiColor
+
+            button.configuration?.baseForegroundColor = textColor
+
+            // Alpha state
+            button.alpha = button.isEnabled ? 1.0 : 0.5
         }
+    }
+
+    // MARK: - Interactions
+
+    private func setupInteractions() {
+        addTarget(self, action: #selector(touchDown), for: .touchDown)
+        addTarget(
+            self,
+            action: #selector(touchUp),
+            for: [.touchUpInside, .touchUpOutside, .touchCancel]
+        )
     }
 
     @objc private func touchDown() {
@@ -55,3 +94,4 @@ final class TextButton: UIButton {
         alpha = isEnabled ? 1.0 : 0.5
     }
 }
+

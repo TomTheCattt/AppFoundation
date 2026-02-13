@@ -11,9 +11,9 @@ import Swinject
 final class InfrastructureAssembly: Assembly {
     func assemble(container: Container) {
         // Layered cache (optional; use when persistence + speed needed)
-        container.register(LayeredCache.self) { r in
+        container.register(LayeredCache.self) { register in
             LayeredCache(
-                memory: r.resolve(CacheProtocol.self)!,
+                memory: register.resolve(CacheProtocol.self)!,
                 disk: DiskCache()
             )
         }
@@ -24,16 +24,16 @@ final class InfrastructureAssembly: Assembly {
         }.inObjectScope(.container)
 
         // Sync manager
-        container.register(SyncManagerProtocol.self) { r in
+        container.register(SyncManagerProtocol.self) { register in
             SyncManager(
-                networkMonitor: r.resolve(NetworkMonitorProtocol.self)!,
-                logger: r.resolve(Logger.self)!
+                networkMonitor: register.resolve(NetworkMonitorProtocol.self)!,
+                logger: register.resolve(Logger.self)!
             )
         }.inObjectScope(.container)
 
         // Background task manager
-        container.register(BackgroundTaskManaging.self) { r in
-            BackgroundTaskManager(logger: r.resolve(Logger.self)!)
+        container.register(BackgroundTaskManaging.self) { register in
+            BackgroundTaskManager(logger: register.resolve(Logger.self)!)
         }.inObjectScope(.container)
 
         // Device token store
@@ -42,10 +42,10 @@ final class InfrastructureAssembly: Assembly {
         }.inObjectScope(.container)
 
         // Push notification service
-        container.register(PushNotificationServiceProtocol.self) { r in
+        container.register(PushNotificationServiceProtocol.self) { register in
             PushNotificationService(
-                deviceTokenStore: r.resolve(DeviceTokenStoreProtocol.self)!,
-                logger: r.resolve(Logger.self)!
+                deviceTokenStore: register.resolve(DeviceTokenStoreProtocol.self)!,
+                logger: register.resolve(Logger.self)!
             )
         }.inObjectScope(.container)
     }

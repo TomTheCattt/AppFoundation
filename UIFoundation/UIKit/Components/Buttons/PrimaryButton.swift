@@ -27,7 +27,7 @@ final class PrimaryButton: UIButton {
         }
     }
 
-    // MARK: - Initialization
+    // MARK: - Init
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,72 +42,85 @@ final class PrimaryButton: UIButton {
     convenience init(title: String) {
         self.init(frame: .zero)
         setTitle(title, for: .normal)
+        originalTitle = title
     }
 
     // MARK: - Setup
 
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = DesignSystemColors.primary.uiColor
-        setTitleColor(.white, for: .normal)
-        setTitleColor(.white.withAlphaComponent(0.5), for: .disabled)
-        titleLabel?.font = DesignSystemTypography.bodyBold.font
 
-        layer.cornerRadius = DesignSystemCornerRadius.sm
-        layer.masksToBounds = true
+        setupConfiguration()
+        setupLayout()
+        setupInteractions()
+        setupAccessibility()
+    }
 
-        contentEdgeInsets = UIEdgeInsets(
+    // MARK: - Configuration (iOS 15)
+
+    private func setupConfiguration() {
+        var config = UIButton.Configuration.filled()
+
+        config.baseBackgroundColor = DesignSystemColors.primary.uiColor
+        config.baseForegroundColor = .white
+
+        config.cornerStyle = .medium
+        config.contentInsets = NSDirectionalEdgeInsets(
             top: DesignSystemSpacing.xs,
-            left: DesignSystemSpacing.md,
+            leading: DesignSystemSpacing.md,
             bottom: DesignSystemSpacing.xs,
-            right: DesignSystemSpacing.md
+            trailing: DesignSystemSpacing.md
         )
 
-        heightAnchor.constraint(greaterThanOrEqualToConstant: 48).isActive = true
+        configuration = config
+
+        configurationUpdateHandler = { button in
+
+            button.alpha = button.isEnabled ? 1.0 : 0.5
+
+            button.configuration?.attributedTitle =
+                AttributedString(
+                    button.currentTitle ?? "",
+                    attributes: AttributeContainer([
+                        .font: DesignSystemTypography.bodyBold.font
+                    ])
+                )
+        }
+    }
+
+    // MARK: - Layout
+
+    private func setupLayout() {
+        heightAnchor
+            .constraint(greaterThanOrEqualToConstant: 48)
+            .isActive = true
 
         addSubview(activityIndicator)
+
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
-
-        addTarget(self, action: #selector(touchDown), for: .touchDown)
-        addTarget(self, action: #selector(touchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        
-        isAccessibilityElement = true
-        accessibilityIdentifier = AccessibilityIdentifier.Button.primary
-    }
-
-    // MARK: - State
-
-    override var isEnabled: Bool {
-        didSet {
-            alpha = isEnabled ? 1.0 : 0.5
-        }
-    }
-
-    private func updateLoadingState() {
-        if isLoading {
-            originalTitle = title(for: .normal)
-            setTitle("", for: .normal)
-            activityIndicator.startAnimating()
-            isUserInteractionEnabled = false
-        } else {
-            setTitle(originalTitle, for: .normal)
-            activityIndicator.stopAnimating()
-            isUserInteractionEnabled = true
-        }
     }
 
     // MARK: - Interactions
+
+    private func setupInteractions() {
+        addTarget(self, action: #selector(touchDown), for: .touchDown)
+        addTarget(
+            self,
+            action: #selector(touchUp),
+            for: [.touchUpInside, .touchUpOutside, .touchCancel]
+        )
+    }
 
     @objc private func touchDown() {
         UIView.animate(withDuration: 0.1) {
             self.transform = CGAffineTransform(scaleX: 0.96, y: 0.96)
             self.alpha = 0.8
         }
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.impactOccurred()
+
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
     }
 
     @objc private func touchUp() {
@@ -116,4 +129,29 @@ final class PrimaryButton: UIButton {
             self.alpha = self.isEnabled ? 1.0 : 0.5
         }
     }
+
+    // MARK: - Loading State
+
+    private func updateLoadingState() {
+        if isLoading {
+            originalTitle = title(for: .normal)
+            setTitle("", for: .normal)
+
+            activityIndicator.startAnimating()
+            isUserInteractionEnabled = false
+        } else {
+            setTitle(originalTitle, for: .normal)
+
+            activityIndicator.stopAnimating()
+            isUserInteractionEnabled = true
+        }
+    }
+
+    // MARK: - Accessibility
+
+    private func setupAccessibility() {
+        isAccessibilityElement = true
+        accessibilityIdentifier = AccessibilityIdentifier.Button.primary
+    }
 }
+

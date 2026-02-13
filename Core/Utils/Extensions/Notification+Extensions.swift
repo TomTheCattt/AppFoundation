@@ -35,8 +35,12 @@ extension NotificationCenter {
     ///   - name: Notification name
     ///   - object: Associated object
     ///   - userInfo: User info dictionary
-    func post(name: Notification.Name, object: Any? = nil, userInfo: [AnyHashable: Any]? = nil) {
-        post(name: name, object: object, userInfo: userInfo)
+    func postNotification(name: Notification.Name,
+                          object: Any? = nil,
+                          userInfo: [AnyHashable: Any]? = nil) {
+        NotificationCenter.default.post(name: name,
+                                        object: object,
+                                        userInfo: userInfo)
     }
     
     // MARK: - Advanced Helpers

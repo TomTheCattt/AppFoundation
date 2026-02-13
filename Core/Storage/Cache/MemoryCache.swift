@@ -29,7 +29,7 @@ final class MemoryCache: CacheProtocol {
     }
 
     func get<T: Decodable>(forKey key: String) throws -> T? {
-        try queue.sync {
+        queue.sync {
             guard let entry = storage[key] else { return nil }
             if let exp = entry.expirationDate, exp < Date() {
                 storage.removeValue(forKey: key)

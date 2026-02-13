@@ -15,20 +15,20 @@ final class UIFoundationAssembly: Assembly {
         }
         .inObjectScope(.container)
 
-        container.register(DeepLinkParserProtocol.self) { r in
-            let logger = r.resolve(Logger.self)!
+        container.register(DeepLinkParserProtocol.self) { register in
+            let logger = register.resolve(Logger.self)!
             return DeepLinkParser(logger: logger)
         }
 
-        container.register(DeepLinkHandler.self) { r in
-            let parser = r.resolve(DeepLinkParserProtocol.self)!
-            let logger = r.resolve(Logger.self)!
+        container.register(DeepLinkHandler.self) { register in
+            let parser = register.resolve(DeepLinkParserProtocol.self)!
+            let logger = register.resolve(Logger.self)!
             return DeepLinkHandler(parser: parser, logger: logger)
         }
 
-        container.register(UniversalLinkManager.self) { r in
-            let handler = r.resolve(DeepLinkHandler.self)!
-            let logger = r.resolve(Logger.self)!
+        container.register(UniversalLinkManager.self) { register in
+            let handler = register.resolve(DeepLinkHandler.self)!
+            let logger = register.resolve(Logger.self)!
             return UniversalLinkManager(deepLinkHandler: handler, logger: logger)
         }
     }
