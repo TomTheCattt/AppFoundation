@@ -3,8 +3,8 @@
 //  AppFoundation
 //
 
-import Foundation
 import AppFoundation
+import Foundation
 
 enum AuthEndpoint {
     case login(email: String, password: String)

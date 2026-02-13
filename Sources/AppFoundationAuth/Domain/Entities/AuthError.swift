@@ -3,8 +3,8 @@
 //  AppFoundation
 //
 
-import Foundation
 import AppFoundation
+import Foundation
 
 enum AuthError: Error, LocalizedError {
     case invalidCredentials

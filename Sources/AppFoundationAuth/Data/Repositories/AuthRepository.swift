@@ -3,8 +3,8 @@
 //  AppFoundation
 //
 
-import Foundation
 import AppFoundation
+import Foundation
 
 final class AuthRepository: AuthRepositoryProtocol {
     private let remoteDataSource: AuthRemoteDataSourceProtocol

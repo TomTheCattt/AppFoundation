@@ -3,7 +3,7 @@
 //  AppFoundation
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 // Placeholder for lightweight migration / custom migration

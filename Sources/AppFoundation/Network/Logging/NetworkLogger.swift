@@ -5,8 +5,8 @@
 //  Created by AppFoundation Package.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 /// A robust Network Logger using Alamofire's EventMonitor.
 /// Logs requests (cURL, Headers, Body) and Responses (Status, Metrics, Body).

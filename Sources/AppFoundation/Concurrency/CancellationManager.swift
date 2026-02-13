@@ -3,8 +3,8 @@
 //  AppFoundation
 //
 
-import Foundation
 import Combine
+import Foundation
 
 final class CancellationManager {
     private var cancellables = Set<AnyCancellable>()

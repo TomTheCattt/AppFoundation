@@ -154,4 +154,3 @@ public final class PrimaryButton: UIButton {
         accessibilityIdentifier = AccessibilityIdentifier.Button.primary
     }
 }
-

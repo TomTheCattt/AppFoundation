@@ -3,10 +3,10 @@
 //  AppFoundation
 //
 
-import Foundation
-import Swinject
 import AppFoundation
 import AppFoundationUI
+import Foundation
+import Swinject
 
 final class AuthAssembly: Assembly {
     func assemble(container: Container) {

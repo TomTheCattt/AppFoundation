@@ -5,7 +5,7 @@
 //  Core Data adapter. Implement when using Core Data.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 // Placeholder: implement LocalDatabaseProtocol with NSManagedObjectContext when needed

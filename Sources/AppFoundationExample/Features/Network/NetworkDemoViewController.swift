@@ -5,9 +5,9 @@
 //  Created by AppFoundation Package.
 //
 
-import UIKit
-import AppFoundationUI
 import AppFoundation
+import AppFoundationUI
+import UIKit
 
 class NetworkDemoViewController: BaseViewController<NetworkDemoViewModel> {
     

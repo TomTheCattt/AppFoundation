@@ -5,9 +5,9 @@
 //  Created by AppFoundation Package.
 //
 
-import Foundation
-import AppFoundationUI
 import AppFoundation
+import AppFoundationUI
+import Foundation
 
 class DemoLoginViewModel: BaseViewModel {
     private let coordinator: DemoAppCoordinator

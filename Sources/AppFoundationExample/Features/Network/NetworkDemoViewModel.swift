@@ -5,9 +5,9 @@
 //  Created by AppFoundation Package.
 //
 
-import Foundation
-import AppFoundationUI
 import AppFoundation
+import AppFoundationUI
+import Foundation
 
 struct DemoPost: Codable {
     let id: Int

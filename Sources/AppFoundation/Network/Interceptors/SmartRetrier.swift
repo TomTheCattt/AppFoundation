@@ -5,8 +5,8 @@
 //  Created by AppFoundation Package.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 public final class SmartRetrier: RequestRetrier {
     private let limit: Int

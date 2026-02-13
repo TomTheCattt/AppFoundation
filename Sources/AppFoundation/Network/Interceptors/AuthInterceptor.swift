@@ -6,8 +6,8 @@
 //  Optional: Phase 4+ can add refresh token flow via Auth feature.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 public final class AuthInterceptor: RequestInterceptor {
     private let tokenStore: TokenStoreProtocol

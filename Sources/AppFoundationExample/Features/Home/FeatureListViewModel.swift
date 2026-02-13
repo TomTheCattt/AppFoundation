@@ -5,8 +5,8 @@
 //  Created by AppFoundation Package.
 //
 
-import Foundation
 import AppFoundationUI
+import Foundation
 
 enum DemoFeature: String, CaseIterable {
     case network = "Smart Network & Fallback"

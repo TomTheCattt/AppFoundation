@@ -5,8 +5,8 @@
 //  Created by AppFoundation Package.
 //
 
-import UIKit
 import Combine
+import UIKit
 
 public final class LifecycleManager {
     public static let shared = LifecycleManager()

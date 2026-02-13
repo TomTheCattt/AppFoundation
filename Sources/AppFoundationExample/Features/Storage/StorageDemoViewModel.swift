@@ -5,9 +5,9 @@
 //  Created by AppFoundation Package.
 //
 
-import Foundation
-import AppFoundationUI
 import AppFoundation
+import AppFoundationUI
+import Foundation
 
 class StorageDemoViewModel: BaseViewModel {
     @Published var status: String = "Idle"

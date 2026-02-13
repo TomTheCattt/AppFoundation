@@ -10,9 +10,9 @@ import SwiftUI
 struct SwiftUIEmptyStateView: View {
     var imageName: String = IconSet.Content.empty
     var title: String
-    var message: String? = nil
-    var actionTitle: String? = nil
-    var action: (() -> Void)? = nil
+    var message: String?
+    var actionTitle: String?
+    var action: (() -> Void)?
 
     var body: some View {
         VStack(spacing: DesignSystemSpacing.md) {

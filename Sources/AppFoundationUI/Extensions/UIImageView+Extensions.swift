@@ -5,8 +5,8 @@
 //  UIImageView extensions for image loading with Kingfisher.
 //
 
-import UIKit
 import Kingfisher
+import UIKit
 
 extension UIImageView {
     

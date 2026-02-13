@@ -5,8 +5,8 @@
 //  Network client using Alamofire for robust HTTP requests with interceptor support.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 /// Protocol defining the API client interface for making network requests
 public protocol APIClientProtocol {

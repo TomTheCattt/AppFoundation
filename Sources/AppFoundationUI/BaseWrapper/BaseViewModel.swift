@@ -5,12 +5,12 @@
 //  Created by AppFoundation Package.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 open class BaseViewModel: ObservableObject {
     @Published public var isLoading: Bool = false
-    @Published public var error: Error? = nil
+    @Published public var error: Error?
     
     public init() {}
     

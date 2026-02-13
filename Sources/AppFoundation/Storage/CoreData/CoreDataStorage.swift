@@ -5,8 +5,8 @@
 //  Created by AppFoundation Package.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 // Note: PersistenceProtocol uses Data for everything (Key-Value style).
 // CoreData is Relational/Object Graph.

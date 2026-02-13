@@ -3,10 +3,10 @@
 //  AppFoundation
 //
 
-import UIKit
 import AppFoundation
 import AppFoundationUI
 import Combine
+import UIKit
 
 final class RegisterViewController: BaseViewController<RegisterViewModel> {
     private let coordinator: AuthCoordinatorProtocol
@@ -89,8 +89,7 @@ final class RegisterViewController: BaseViewController<RegisterViewModel> {
         viewModel.isLoadingPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] loading in
-                if loading { self?.loadingOverlay.startAnimating() }
-                else { self?.loadingOverlay.stopAnimating() }
+                if loading { self?.loadingOverlay.startAnimating() } else { self?.loadingOverlay.stopAnimating() }
             }
             .store(in: &cancellables)
     }

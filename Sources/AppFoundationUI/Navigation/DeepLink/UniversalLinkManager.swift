@@ -5,8 +5,8 @@
 //  Handles Universal Links and custom URL scheme opening.
 //
 
-import UIKit
 import AppFoundation
+import UIKit
 
 final class UniversalLinkManager {
 

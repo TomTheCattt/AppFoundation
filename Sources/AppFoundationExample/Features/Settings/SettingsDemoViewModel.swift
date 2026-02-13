@@ -5,8 +5,8 @@
 //  Created by AppFoundation Package.
 //
 
-import AppFoundationUI
 import AppFoundationResources
+import AppFoundationUI
 import UIKit
 
 class SettingsDemoViewModel: BaseViewModel {

@@ -3,8 +3,8 @@
 //  AppFoundation
 //
 
-import Foundation
 import CryptoKit
+import Foundation
 
 final class CryptoProvider {
     static let shared = CryptoProvider()

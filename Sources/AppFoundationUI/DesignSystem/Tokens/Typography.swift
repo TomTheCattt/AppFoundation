@@ -5,8 +5,8 @@
 //  Typography system: text styles, Dynamic Type, line height, letter spacing.
 //
 
-import UIKit
 import SwiftUI
+import UIKit
 
 struct DesignSystemTypography {
     // MARK: - Font Family

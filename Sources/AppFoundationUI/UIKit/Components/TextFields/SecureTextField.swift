@@ -5,8 +5,8 @@
 //  Secure (password) text field with optional show/hide toggle.
 //
 
-import UIKit
 import Combine
+import UIKit
 
 public final class SecureTextField: StandardTextField {
 

@@ -5,9 +5,9 @@
 //  Created by AppFoundation Package.
 //
 
-import UIKit
-import AppFoundationUI
 import AppFoundationResources
+import AppFoundationUI
+import UIKit
 
 class DemoLoginViewController: BaseViewController<DemoLoginViewModel> {
     

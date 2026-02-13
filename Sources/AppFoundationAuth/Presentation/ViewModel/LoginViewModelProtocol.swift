@@ -3,9 +3,9 @@
 //  AppFoundation
 //
 
-import Foundation
 import AppFoundation
 import Combine
+import Foundation
 
 protocol LoginViewModelProtocol: AnyObject {
     var statePublisher: AnyPublisher<AuthViewState, Never> { get }

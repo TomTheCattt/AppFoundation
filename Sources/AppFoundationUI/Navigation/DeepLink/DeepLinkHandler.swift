@@ -5,8 +5,8 @@
 //  Handles deep link parsing and capability check.
 //
 
-import Foundation
 import AppFoundation
+import Foundation
 
 protocol DeepLinkHandlerProtocol {
     func parse(_ url: URL) -> DeepLinkRoute?

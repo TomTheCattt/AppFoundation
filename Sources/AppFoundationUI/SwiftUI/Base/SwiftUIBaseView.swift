@@ -10,8 +10,8 @@ import SwiftUI
 struct SwiftUIBaseView<Content: View>: View {
     let content: Content
     var isLoading: Bool = false
-    var error: Error? = nil
-    var onRetry: (() -> Void)? = nil
+    var error: Error?
+    var onRetry: (() -> Void)?
 
     init(
         isLoading: Bool = false,

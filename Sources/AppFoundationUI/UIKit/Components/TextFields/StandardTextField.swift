@@ -5,8 +5,8 @@
 //  Standard text field with validation state and focus styling.
 //
 
-import UIKit
 import Combine
+import UIKit
 
 public class StandardTextField: UITextField {
 

@@ -3,9 +3,9 @@
 //  AppFoundation
 //
 
-import UIKit
 import AppFoundation
 import AppFoundationUI
+import UIKit
 
 final public class AuthCoordinator: BaseCoordinator, AuthCoordinatorProtocol {
     private let container: DIContainer

@@ -5,8 +5,8 @@
 //  Simple placeholder screen used by coordinators until real screens exist.
 //
 
-import UIKit
 import AppFoundationResources
+import UIKit
 
 final class PlaceholderViewController: UIViewController {
 

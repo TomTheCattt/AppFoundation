@@ -5,8 +5,8 @@
 //  Wraps BGTaskScheduler for app refresh and optional processing tasks. iOS 13+.
 //
 
-import Foundation
 import BackgroundTasks
+import Foundation
 
 enum BackgroundTaskIdentifier {
     static let appRefresh = "\(AppConstants.Security.keychainService).refresh"

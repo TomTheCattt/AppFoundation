@@ -3,8 +3,8 @@
 //  AppFoundation
 //
 
-import Foundation
 import AppFoundation
+import Foundation
 
 protocol LogoutUseCaseProtocol {
     func execute() async throws

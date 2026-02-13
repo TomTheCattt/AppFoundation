@@ -5,9 +5,9 @@
 //  Created by AppFoundation Package.
 //
 
-import UIKit
-import Combine
 import AppFoundationResources
+import Combine
+import UIKit
 
 open class BaseViewController<VM: BaseViewModel>: UIViewController {
     public let viewModel: VM

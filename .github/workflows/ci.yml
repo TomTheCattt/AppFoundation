@@ -24,7 +24,7 @@ jobs:
         run: swift package resolve
       
       - name: Build Package
-        run: swift build
+        run: swift build -Xswiftc "-sdk" -Xswiftc "`xcrun --sdk iphonesimulator --show-sdk-path`" -Xswiftc "-target" -Xswiftc "x86_64-apple-ios15.0-simulator"
       
       - name: Run Tests
         run: swift test --parallel

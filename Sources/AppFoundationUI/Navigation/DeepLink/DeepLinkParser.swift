@@ -5,8 +5,8 @@
 //  Parses URLs into DeepLinkRoute (custom scheme + Universal Links).
 //
 
-import Foundation
 import AppFoundation
+import Foundation
 
 protocol DeepLinkParserProtocol {
     func parse(_ url: URL) -> DeepLinkRoute?

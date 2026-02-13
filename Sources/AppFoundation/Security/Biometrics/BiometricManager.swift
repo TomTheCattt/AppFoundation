@@ -27,7 +27,7 @@ public final class BiometricManager {
     }
     
     public func biometricType() -> BiometricType {
-        let _ = canEvaluatePolicy()
+        _ = canEvaluatePolicy()
         switch context.biometryType {
         case .none: return .none
         case .touchID: return .touchID

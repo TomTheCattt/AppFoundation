@@ -5,10 +5,10 @@
 //  Created by AppFoundation Package.
 //
 
-import UIKit
 import AppFoundation
 import AppFoundationAuth
 import AppFoundationUI
+import UIKit
 
 class DemoAppCoordinator {
     let window: UIWindow

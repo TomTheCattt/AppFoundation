@@ -3,10 +3,10 @@
 //  AppFoundation
 //
 
-import UIKit
 import AppFoundation
 import AppFoundationUI
 import Combine
+import UIKit
 
 final class LoginViewController: BaseViewController<LoginViewModel> {
     
@@ -108,8 +108,7 @@ final class LoginViewController: BaseViewController<LoginViewModel> {
         viewModel.isLoadingPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] loading in
-                if loading { self?.loadingOverlay.startAnimating() }
-                else { self?.loadingOverlay.stopAnimating() }
+                if loading { self?.loadingOverlay.startAnimating() } else { self?.loadingOverlay.stopAnimating() }
             }
             .store(in: &cancellables)
     }

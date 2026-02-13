@@ -122,4 +122,3 @@ public final class SecondaryButton: UIButton {
         accessibilityIdentifier = AccessibilityIdentifier.Button.secondary
     }
 }
-

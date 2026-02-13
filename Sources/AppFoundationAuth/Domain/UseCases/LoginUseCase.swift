@@ -3,8 +3,8 @@
 //  AppFoundation
 //
 
-import Foundation
 import AppFoundation
+import Foundation
 
 protocol LoginUseCaseProtocol {
     func execute(email: String, password: String) async throws

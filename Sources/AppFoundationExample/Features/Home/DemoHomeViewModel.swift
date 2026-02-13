@@ -5,8 +5,8 @@
 //  Created by AppFoundation Package.
 //
 
-import Foundation
 import AppFoundationUI
+import Foundation
 
 class DemoHomeViewModel: BaseViewModel {
     private let coordinator: DemoAppCoordinator
