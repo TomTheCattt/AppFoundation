@@ -1,10 +1,10 @@
 //
 //  PendingSyncQueueTests.swift
-//  BaseIOSAppTests
+//  AppFoundationTests
 //
 
 import XCTest
-@testable import BaseIOSApp
+@testable import AppFoundation
 
 final class PendingSyncQueueTests: XCTestCase {
 
@@ -13,7 +13,7 @@ final class PendingSyncQueueTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        defaults = UserDefaults(suiteName: "BaseIOSAppTests.PendingSyncQueue") ?? .standard
+        defaults = UserDefaults(suiteName: "AppFoundationTests.PendingSyncQueue") ?? .standard
         sut = UserDefaultsPendingSyncQueue(defaults: defaults)
         try? sut.removeAll()
     }

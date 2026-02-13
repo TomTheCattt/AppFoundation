@@ -1,6 +1,0 @@
-#include "Shared.xcconfig"
-
-// BackendIntegrationGuide: local Node server (simulator → localhost)
-API_BASE_URL = http://localhost:3000/api/v1
-ENABLE_LOGGING = YES
-ENABLE_MOCK_SERVER = NO

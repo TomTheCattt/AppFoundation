@@ -1,10 +1,10 @@
 //
 //  KeychainManagerTests.swift
-//  BaseIOSAppTests
+//  AppFoundationTests
 //
 
 import XCTest
-@testable import BaseIOSApp
+@testable import AppFoundation
 
 final class KeychainManagerTests: XCTestCase {
     func test_saveAndLoad() throws {

@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "BaseIOSApp",
+    name: "AppFoundation",
     defaultLocalization: "en",
     platforms: [
         .iOS(.v15)
@@ -12,17 +12,25 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "BaseIOSCore",
-            targets: ["BaseIOSCore"]),
+            name: "AppFoundation",
+            targets: ["AppFoundation"]),
         .library(
-            name: "BaseIOSResources",
-            targets: ["BaseIOSResources"]),
+            name: "AppFoundationResources",
+            targets: ["AppFoundationResources"]),
         .library(
-            name: "BaseIOSUI",
-            targets: ["BaseIOSUI"]),
+            name: "AppFoundationUI",
+            targets: ["AppFoundationUI"]),
         .library(
-            name: "BaseIOSAuth",
-            targets: ["BaseIOSAuth"]),
+            name: "AppFoundationAuth",
+            targets: ["AppFoundationAuth"]),
+        
+        // Build Tool Plugins
+        .plugin(
+            name: "SwiftLintPlugin",
+            targets: ["SwiftLintPlugin"]),
+        .plugin(
+            name: "SwiftGenPlugin",
+            targets: ["SwiftGenPlugin"]),
     ],
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire", from: "5.9.0"),
@@ -34,56 +42,68 @@ let package = Package(
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "BaseIOSCore",
+            name: "AppFoundation",
             dependencies: [
                 "Alamofire",
                 "Swinject",
                 .product(name: "RealmSwift", package: "realm-swift")
             ],
-            path: "Sources/BaseIOSCore",
+            path: "Sources/AppFoundation",
             resources: [
                 .process("Mock/Fixtures")
             ]
         ),
         .target(
-            name: "BaseIOSResources",
+            name: "AppFoundationResources",
             dependencies: [],
-            path: "Sources/BaseIOSResources",
+            path: "Sources/AppFoundationResources",
             resources: [
                 .process("Resources")
             ]
         ),
         .target(
-            name: "BaseIOSUI",
+            name: "AppFoundationUI",
             dependencies: [
-                "BaseIOSCore",
-                "BaseIOSResources",
+                "AppFoundation",
+                "AppFoundationResources",
                 "Kingfisher"
             ],
-            path: "Sources/BaseIOSUI"
+            path: "Sources/AppFoundationUI"
         ),
         .target(
-            name: "BaseIOSAuth",
+            name: "AppFoundationAuth",
             dependencies: [
-                "BaseIOSCore",
-                "BaseIOSUI",
-                "BaseIOSResources"
+                "AppFoundation",
+                "AppFoundationUI",
+                "AppFoundationResources"
             ],
-            path: "Sources/BaseIOSAuth"
+            path: "Sources/AppFoundationAuth"
         ),
         .testTarget(
-            name: "BaseIOSAppTests",
-            dependencies: ["BaseIOSCore", "BaseIOSUI", "BaseIOSAuth"]
+            name: "AppFoundationTests",
+            dependencies: ["AppFoundation", "AppFoundationUI", "AppFoundationAuth"]
         ),
         .target(
-            name: "BaseIOSExample",
-            dependencies: ["BaseIOSCore", "BaseIOSUI", "BaseIOSAuth", "BaseIOSResources"],
-            path: "Sources/BaseIOSExample"
+            name: "AppFoundationExample",
+            dependencies: ["AppFoundation", "AppFoundationUI", "AppFoundationAuth", "AppFoundationResources"],
+            path: "Sources/AppFoundationExample"
         ),
         .testTarget(
-            name: "BaseIOSExampleTests",
-            dependencies: ["BaseIOSExample"],
-            path: "Tests/BaseIOSExampleTests"
+            name: "AppFoundationExampleTests",
+            dependencies: ["AppFoundationExample"],
+            path: "Tests/AppFoundationExampleTests"
+        ),
+        
+        // Build Tool Plugins
+        .plugin(
+            name: "SwiftLintPlugin",
+            capability: .buildTool(),
+            path: "Plugins/SwiftLintPlugin"
+        ),
+        .plugin(
+            name: "SwiftGenPlugin",
+            capability: .buildTool(),
+            path: "Plugins/SwiftGenPlugin"
         )
     ]
 )

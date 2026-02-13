@@ -1,10 +1,10 @@
 //
 //  AuthRepositoryTests.swift
-//  BaseIOSAppTests
+//  AppFoundationTests
 //
 
 import XCTest
-@testable import BaseIOSApp
+@testable import AppFoundation
 
 final class AuthRepositoryTests: XCTestCase {
 

@@ -1,6 +1,0 @@
-#include "Shared.xcconfig"
-
-API_BASE_URL = https://api.example.com
-ENABLE_LOGGING = NO
-ENABLE_MOCK_SERVER = NO
-ENABLE_DATABASE_ENCRYPTION = YES

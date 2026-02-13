@@ -1,5 +1,5 @@
 # XcodeGen – run: xcodegen generate
-name: BaseIOSApp
+name: AppFoundation
 options:
   bundleIdPrefix: com.tomthecat
   deploymentTarget:
@@ -25,29 +25,28 @@ packages:
     url: https://github.com/onevcat/Kingfisher
     from: "7.0.0"
 targets:
-  BaseIOSApp:
+  AppFoundation:
     type: application
     platform: iOS
     sources:
-      - path: App
-        name: App
-      - path: Core
-        name: Core
-      - path: UIFoundation
-        name: UIFoundation
-      - path: Features
-        name: Features
-      - path: Resources
-        name: Resources
-        type: group
+      - path: Sources/AppFoundation
+        name: AppFoundation
+      - path: Sources/AppFoundationUI
+        name: AppFoundationUI
+      - path: Sources/AppFoundationAuth
+        name: AppFoundationAuth
+      - path: Sources/AppFoundationResources
+        name: AppFoundationResources
+      - path: Sources/AppFoundationExample
+        name: AppFoundationExample
     settings:
       base: Config/Shared.xcconfig
       configFiles:
         Debug: Config/Dev.xcconfig
         Release: Config/Production.xcconfig
         Local: Config/Local.xcconfig
-      PRODUCT_BUNDLE_IDENTIFIER: com.tomthecat.baseIOSApp
-      INFOPLIST_FILE: BaseIOSApp/Info.plist
+      PRODUCT_BUNDLE_IDENTIFIER: com.tomthecat.AppFoundation
+      INFOPLIST_FILE: AppFoundation/Info.plist
       CODE_SIGN_STYLE: Automatic
     dependencies:
       - package: Swinject
@@ -75,64 +74,64 @@ targets:
             echo "warning: SwiftLint not installed"
           fi
     info:
-      path: BaseIOSApp/Info.plist
+      path: AppFoundation/Info.plist
       generate: false
       properties:
         UILaunchStoryboardName: LaunchScreen
         UISupportedInterfaceOrientations: [UIInterfaceOrientation.portrait, UIInterfaceOrientation.landscapeLeft, UIInterfaceOrientation.landscapeRight]
-  BaseIOSAppTests:
+  AppFoundationTests:
     type: bundle.unit-test
     platform: iOS
     sources:
-      - path: Tests/UnitTests
-        name: BaseIOSAppTests
+      - path: Tests/AppFoundationTests
+        name: AppFoundationTests
     dependencies:
-      - target: BaseIOSApp
+      - target: AppFoundation
       - package: Swinject
         product: Swinject
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: com.tomthecat.baseIOSAppTests
+      PRODUCT_BUNDLE_IDENTIFIER: com.tomthecat.AppFoundationTests
       GENERATE_INFOPLIST_FILE: YES
-  BaseIOSAppUITests:
+  AppFoundationUITests:
     type: bundle.ui-testing
     platform: iOS
     sources:
       - path: Tests/UITests
-        name: BaseIOSAppUITests
+        name: AppFoundationUITests
     dependencies:
-      - target: BaseIOSApp
+      - target: AppFoundation
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: com.tomthecat.baseIOSAppUITests
+      PRODUCT_BUNDLE_IDENTIFIER: com.tomthecat.AppFoundationUITests
       GENERATE_INFOPLIST_FILE: YES
 schemes:
-  BaseIOSApp:
+  AppFoundation:
     build:
       targets:
-        BaseIOSApp: all
+        AppFoundation: all
     run:
       config: Debug
     test:
       config: Debug
       targets:
-        - BaseIOSAppTests
-        - BaseIOSAppUITests
+        - AppFoundationTests
+        - AppFoundationUITests
     profile:
       config: Release
     analyze:
       config: Debug
     archive:
       config: Release
-  "BaseIOSApp (Local)":
+  "AppFoundation (Local)":
     build:
       targets:
-        BaseIOSApp: all
+        AppFoundation: all
     run:
       config: Local
     test:
       config: Local
       targets:
-        - BaseIOSAppTests
-        - BaseIOSAppUITests
+        - AppFoundationTests
+        - AppFoundationUITests
     profile:
       config: Local
     analyze:

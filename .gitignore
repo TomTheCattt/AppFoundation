@@ -1,87 +1,50 @@
 # Xcode
-*.xcodeproj/*
-!*.xcodeproj/project.pbxproj
-!*.xcodeproj/xcshareddata/
-!*.xcworkspace/contents.xcworkspacedata
-*.xcworkspace/*
-!*.xcworkspace/xcshareddata/
+.DS_Store
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
 xcuserdata/
 *.xccheckout
 *.moved-aside
-DerivedData/
+DerivedData
 *.hmap
 *.ipa
-*.dSYM.zip
-*.dSYM
+*.xcuserstate
+*.xcworkspace
+!default.xcworkspace
 
-# Build Products
-build/
-*.build/
-Pods/
-*.xcarchive
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+Package.resolved
 
 # CocoaPods
 Pods/
 Podfile.lock
+*.backup
 
-# Swift Package Manager
-.swiftpm/
-.build/
-Package.resolved
+# Debug files
+*.txt
+*.log
+build_errors*.txt
+*_errors*.txt
+*_log*.txt
 
-# fastlane
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots/**/*.png
-fastlane/test_output
+# Generated files
+Generated/
 
-# Code Injection
-iOSInjectionProject/
+# IDE
+.vscode/
+.idea/
 
 # macOS
 .DS_Store
 .AppleDouble
 .LSOverride
-._*
-
-# Thumbnails
-Thumbs.db
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
-# Test logs and artifacts
-*.log
-test_*.log
-*.xcresult
-
-# SwiftGen generated files (will be regenerated)
-Resources/Generated/
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# Environment
-.env
-.env.local
-
-# Temporary files
-*.tmp
-*.temp

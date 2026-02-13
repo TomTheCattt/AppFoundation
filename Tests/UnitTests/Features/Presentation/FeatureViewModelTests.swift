@@ -1,11 +1,11 @@
 //
 //  FeatureViewModelTests.swift
-//  BaseIOSAppTests
+//  AppFoundationTests
 //
 
 import XCTest
 import Combine
-@testable import BaseIOSApp
+@testable import AppFoundation
 
 final class FeatureViewModelTests: XCTestCase {
 

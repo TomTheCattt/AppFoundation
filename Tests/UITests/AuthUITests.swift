@@ -1,7 +1,7 @@
 
 import XCTest
 
-class AuthUITests: BaseIOSAppUITests {
+class AuthUITests: AppFoundationUITests {
 
     override func setUpWithError() throws {
         try super.setUpWithError()

@@ -1,6 +1,6 @@
 //
 //  XCTestCase+Extensions.swift
-//  BaseIOSAppTests
+//  AppFoundationTests
 //
 
 import XCTest

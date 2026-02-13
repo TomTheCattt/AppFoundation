@@ -1,6 +1,6 @@
 //
 //  XCTestCase+Async.swift
-//  BaseIOSAppTests
+//  AppFoundationTests
 //
 
 import XCTest

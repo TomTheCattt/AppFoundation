@@ -1,10 +1,10 @@
 //
 //  ErrorMapperTests.swift
-//  BaseIOSAppTests
+//  AppFoundationTests
 //
 
 import XCTest
-@testable import BaseIOSApp
+@testable import AppFoundation
 
 final class ErrorMapperTests: XCTestCase {
     func test_map_URLErrorNotConnected_returnsNetworkError() {

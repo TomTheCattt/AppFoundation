@@ -1,13 +1,13 @@
 //
 //  FeatureMocks.swift
-//  BaseIOSAppTests
+//  AppFoundationTests
 //
 //  Mocks for Feature ViewModel, UseCase, and Coordinator tests.
 //
 
 import Foundation
 import Combine
-@testable import BaseIOSApp
+@testable import AppFoundation
 
 // MARK: - Mock Logger (no-op for tests)
 

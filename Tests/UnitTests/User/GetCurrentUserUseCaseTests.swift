@@ -1,10 +1,10 @@
 //
 //  GetCurrentUserUseCaseTests.swift
-//  BaseIOSAppTests
+//  AppFoundationTests
 //
 
 import XCTest
-@testable import BaseIOSApp
+@testable import AppFoundation
 
 final class GetCurrentUserUseCaseTests: XCTestCase {
 

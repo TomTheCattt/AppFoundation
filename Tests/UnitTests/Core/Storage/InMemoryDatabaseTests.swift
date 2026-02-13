@@ -1,10 +1,10 @@
 //
 //  InMemoryDatabaseTests.swift
-//  BaseIOSAppTests
+//  AppFoundationTests
 //
 
 import XCTest
-@testable import BaseIOSApp
+@testable import AppFoundation
 
 final class InMemoryDatabaseTests: XCTestCase {
     func test_createAndFetch() async throws {

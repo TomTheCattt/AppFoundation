@@ -1,10 +1,10 @@
 //
 //  AuthMocks.swift
-//  BaseIOSAppTests
+//  AppFoundationTests
 //
 
 import Foundation
-@testable import BaseIOSApp
+@testable import AppFoundation
 
 // MARK: - Mock AuthRepository (for LoginUseCase tests)
 

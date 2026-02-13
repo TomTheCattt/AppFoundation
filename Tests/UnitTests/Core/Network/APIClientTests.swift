@@ -1,10 +1,10 @@
 //
 //  APIClientTests.swift
-//  BaseIOSAppTests
+//  AppFoundationTests
 //
 
 import XCTest
-@testable import BaseIOSApp
+@testable import AppFoundation
 
 final class APIClientTests: XCTestCase {
     func test_requestBuilder_buildsValidRequest() throws {

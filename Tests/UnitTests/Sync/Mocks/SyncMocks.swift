@@ -1,10 +1,10 @@
 //
 //  SyncMocks.swift
-//  BaseIOSAppTests
+//  AppFoundationTests
 //
 
 import Foundation
-@testable import BaseIOSApp
+@testable import AppFoundation
 
 // MARK: - Mock NetworkMonitor (for SyncManager tests)
 

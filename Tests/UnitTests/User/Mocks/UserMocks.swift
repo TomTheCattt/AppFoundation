@@ -1,10 +1,10 @@
 //
 //  UserMocks.swift
-//  BaseIOSAppTests
+//  AppFoundationTests
 //
 
 import Foundation
-@testable import BaseIOSApp
+@testable import AppFoundation
 
 // MARK: - Mock UserRepository (for GetCurrentUserUseCase tests)
 

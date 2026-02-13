@@ -1,10 +1,10 @@
 //
 //  FetchFeatureUseCaseTests.swift
-//  BaseIOSAppTests
+//  AppFoundationTests
 //
 
 import XCTest
-@testable import BaseIOSApp
+@testable import AppFoundation
 
 final class FetchFeatureUseCaseTests: XCTestCase {
 

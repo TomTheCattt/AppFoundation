@@ -2,7 +2,7 @@
 import XCTest
 import Combine
 import Swinject
-@testable import BaseIOSApp
+@testable import AppFoundation
 
 // MARK: - Mocks
 

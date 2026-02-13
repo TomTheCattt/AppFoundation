@@ -1,2 +1,0 @@
-/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/Coordinator/Coordinator.swift:38:12: error: type 'BaseCoordinator' does not conform to protocol 'Coordinator'
-/Users/tomthecat/BaseIOSApp/Sources/BaseIOSUI/Navigation/Coordinator/Coordinator.swift:38:12: error: type 'BaseCoordinator' does not conform to protocol 'Coordinator'
