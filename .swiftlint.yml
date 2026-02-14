@@ -29,8 +29,8 @@ opt_in_rules:
 
 # MARK: - Line length
 line_length:
-    warning: 170
-    error: 160
+    warning: 150
+    error: 170
     ignores_comments: true
     ignores_urls: true
 
