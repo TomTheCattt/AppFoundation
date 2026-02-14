@@ -9,43 +9,43 @@ import SwiftUI
 import UIKit
 import AppFoundationResources
 
-struct DesignSystemColors {
+public struct DesignSystemColors {
     // MARK: - Primary Colors
-    static let primary = ColorToken(asset: Asset.primary)
-    static let primary80 = ColorToken(asset: Asset.primary80)
-    static let primary40 = ColorToken(asset: Asset.primary40)
-    static let primary10 = ColorToken(asset: Asset.primary10)
+    public static let primary = ColorToken(asset: Asset.primary)
+    public static let primary80 = ColorToken(asset: Asset.primary80)
+    public static let primary40 = ColorToken(asset: Asset.primary40)
+    public static let primary10 = ColorToken(asset: Asset.primary10)
 
     // MARK: - Neutral Colors
-    static let neutral100 = ColorToken(asset: Asset.neutral100)
-    static let neutral70 = ColorToken(asset: Asset.neutral70)
-    static let neutral60 = ColorToken(asset: Asset.neutral60)
-    static let neutral40 = ColorToken(asset: Asset.neutral40)
-    static let neutral20 = ColorToken(asset: Asset.neutral20)
-    static let white = ColorToken(asset: Asset.white)
+    public static let neutral100 = ColorToken(asset: Asset.neutral100)
+    public static let neutral70 = ColorToken(asset: Asset.neutral70)
+    public static let neutral60 = ColorToken(asset: Asset.neutral60)
+    public static let neutral40 = ColorToken(asset: Asset.neutral40)
+    public static let neutral20 = ColorToken(asset: Asset.neutral20)
+    public static let white = ColorToken(asset: Asset.white)
 
     // MARK: - Semantic Colors
-    static let success = ColorToken(asset: Asset.semanticSuccess)
-    static let warning = ColorToken(asset: Asset.semanticWarning)
-    static let error = ColorToken(asset: Asset.semanticError)
-    static let info = ColorToken(asset: Asset.semanticInfo)
-    static let orange = ColorToken(asset: Asset.semanticOrange)
+    public static let success = ColorToken(asset: Asset.semanticSuccess)
+    public static let warning = ColorToken(asset: Asset.semanticWarning)
+    public static let error = ColorToken(asset: Asset.semanticError)
+    public static let info = ColorToken(asset: Asset.semanticInfo)
+    public static let orange = ColorToken(asset: Asset.semanticOrange)
 
     // MARK: - Legacy / Background Aliases
-    static let background = white
-    static let backgroundSecondary = primary10
-    static let backgroundTertiary = neutral20
+    public static let background = white
+    public static let backgroundSecondary = primary10
+    public static let backgroundTertiary = neutral20
 
     // MARK: - Legacy / Text Aliases
-    static let textPrimary = neutral100
-    static let textSecondary = neutral70
-    static let textTertiary = neutral60
+    public static let textPrimary = neutral100
+    public static let textSecondary = neutral70
+    public static let textTertiary = neutral60
 
     // MARK: - Border Colors
-    static let border = neutral40
+    public static let border = neutral40
 
     // MARK: - Helper Methods
-    static func color(for colorToken: ColorToken) -> UIColor {
+    public static func color(for colorToken: ColorToken) -> UIColor {
         if #available(iOS 13.0, *) {
             return UIColor { traitCollection in
                 traitCollection.userInterfaceStyle == .dark
@@ -58,25 +58,25 @@ struct DesignSystemColors {
 }
 
 // MARK: - ColorToken Model
-struct ColorToken {
-    let light: UIColor
-    let dark: UIColor
+public struct ColorToken {
+    public let light: UIColor
+    public let dark: UIColor
 
-    init(light: UIColor, dark: UIColor) {
+    public init(light: UIColor, dark: UIColor) {
         self.light = light
         self.dark = dark
     }
 
-    init(asset: ColorAsset) {
+    public init(asset: ColorAsset) {
         self.light = asset.color
         self.dark = asset.color
     }
 
-    var uiColor: UIColor {
+    public var uiColor: UIColor {
         DesignSystemColors.color(for: self)
     }
 
-    var color: Color {
+    public var color: Color {
         Color(uiColor)
     }
 }

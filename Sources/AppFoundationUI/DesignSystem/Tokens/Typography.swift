@@ -8,15 +8,15 @@
 import SwiftUI
 import UIKit
 
-struct DesignSystemTypography {
+public struct DesignSystemTypography {
     // MARK: - Font Family
-    enum FontFamily: String {
+    public enum FontFamily: String {
         case system = "System"
         case sfProDisplay = "SFProDisplay"
         case sfProText = "SFProText"
         case poppins = "Poppins"
 
-        func font(size: CGFloat, weight: UIFont.Weight) -> UIFont {
+        public func font(size: CGFloat, weight: UIFont.Weight) -> UIFont {
             switch self {
             case .system:
                 return .systemFont(ofSize: size, weight: weight)
@@ -29,71 +29,77 @@ struct DesignSystemTypography {
     }
 
     // MARK: - Text Styles - Headers
-    static let title1 = TextStyle(
+    public static let title1 = TextStyle(
         font: FontFamily.poppins.font(size: 24, weight: .semibold),
         lineHeight: 32,
         letterSpacing: 0
     )
 
-    static let title2 = TextStyle(
+    public static let title2 = TextStyle(
         font: FontFamily.poppins.font(size: 20, weight: .semibold),
         lineHeight: 28,
         letterSpacing: 0
     )
 
-    static let title3 = TextStyle(
+    public static let title3 = TextStyle(
         font: FontFamily.poppins.font(size: 18, weight: .semibold),
         lineHeight: 24,
         letterSpacing: 0
     )
 
     // Body
-    static let body1 = TextStyle(
+    public static let body1 = TextStyle(
         font: FontFamily.poppins.font(size: 16, weight: .medium),
         lineHeight: 24,
         letterSpacing: 0
     )
 
-    static let body2 = TextStyle(
+    public static let body2 = TextStyle(
         font: FontFamily.poppins.font(size: 16, weight: .regular),
         lineHeight: 24,
         letterSpacing: 0
     )
 
-    static let body3 = TextStyle(
+    public static let body3 = TextStyle(
         font: FontFamily.poppins.font(size: 14, weight: .medium),
         lineHeight: 20,
         letterSpacing: 0
     )
 
     // Small Text
-    static let caption1 = TextStyle(
+    public static let caption1 = TextStyle(
         font: FontFamily.poppins.font(size: 12, weight: .semibold),
         lineHeight: 16,
         letterSpacing: 0
     )
 
-    static let caption2 = TextStyle(
+    public static let caption2 = TextStyle(
         font: FontFamily.poppins.font(size: 10, weight: .medium),
         lineHeight: 14,
         letterSpacing: 0
     )
     // MARK: - Legacy Aliases
-    static let largeTitle = title1
-    static let body = body2
-    static let bodyBold = body1
-    static let callout = body3
-    static let subheadline = body3
-    static let footnote = caption1
+    public static let largeTitle = title1
+    public static let body = body2
+    public static let bodyBold = body1
+    public static let callout = body3
+    public static let subheadline = body3
+    public static let footnote = caption1
 }
 
 // MARK: - TextStyle Model
-struct TextStyle {
-    let font: UIFont
-    let lineHeight: CGFloat
-    let letterSpacing: CGFloat
+public struct TextStyle {
+    public let font: UIFont
+    public let lineHeight: CGFloat
+    public let letterSpacing: CGFloat
 
-    func attributes(color: UIColor = DesignSystemColors.textPrimary.uiColor) -> [NSAttributedString.Key: Any] {
+    public init(font: UIFont, lineHeight: CGFloat, letterSpacing: CGFloat) {
+        self.font = font
+        self.lineHeight = lineHeight
+        self.letterSpacing = letterSpacing
+    }
+
+    public func attributes(color: UIColor = DesignSystemColors.textPrimary.uiColor) -> [NSAttributedString.Key: Any] {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.minimumLineHeight = lineHeight
         paragraphStyle.maximumLineHeight = lineHeight
