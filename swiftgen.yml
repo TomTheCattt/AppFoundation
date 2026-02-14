@@ -1,13 +1,13 @@
 strings:
   inputs:
-    - ../../Resources/Localization/en.lproj/Localizable.strings
+    - Sources/AppFoundationResources/Resources/Localization/en.lproj/Localizable.strings
   outputs:
     - templateName: structured-swift5
-      output: Generated/Strings+Generated.swift
+      output: Sources/AppFoundationResources/Generated/Strings+Generated.swift
 
 xcassets:
   inputs:
-    - ../../Resources/Assets.xcassets
+    - Sources/AppFoundationResources/Resources/Assets.xcassets
   outputs:
     - templateName: swift5
-      output: Generated/Assets+Generated.swift
+      output: Sources/AppFoundationResources/Generated/Assets+Generated.swift
