@@ -7,77 +7,42 @@
 
 import SwiftUI
 import UIKit
+import AppFoundationResources
 
 struct DesignSystemColors {
     // MARK: - Primary Colors
-    static let primary = ColorToken(
-        light: UIColor(hex: "#007AFF"),
-        dark: UIColor(hex: "#0A84FF")
-    )
+    static let primary = ColorToken(asset: Asset.primary)
+    static let primary80 = ColorToken(asset: Asset.primary80)
+    static let primary40 = ColorToken(asset: Asset.primary40)
+    static let primary10 = ColorToken(asset: Asset.primary10)
 
-    static let primaryVariant = ColorToken(
-        light: UIColor(hex: "#0051D5"),
-        dark: UIColor(hex: "#409CFF")
-    )
+    // MARK: - Neutral Colors
+    static let neutral100 = ColorToken(asset: Asset.neutral100)
+    static let neutral70 = ColorToken(asset: Asset.neutral70)
+    static let neutral60 = ColorToken(asset: Asset.neutral60)
+    static let neutral40 = ColorToken(asset: Asset.neutral40)
+    static let neutral20 = ColorToken(asset: Asset.neutral20)
+    static let white = ColorToken(asset: Asset.white)
 
     // MARK: - Semantic Colors
-    static let success = ColorToken(
-        light: UIColor(hex: "#34C759"),
-        dark: UIColor(hex: "#30D158")
-    )
+    static let success = ColorToken(asset: Asset.semanticSuccess)
+    static let warning = ColorToken(asset: Asset.semanticWarning)
+    static let error = ColorToken(asset: Asset.semanticError)
+    static let info = ColorToken(asset: Asset.semanticInfo)
+    static let orange = ColorToken(asset: Asset.semanticOrange)
 
-    static let warning = ColorToken(
-        light: UIColor(hex: "#FF9500"),
-        dark: UIColor(hex: "#FF9F0A")
-    )
+    // MARK: - Legacy / Background Aliases
+    static let background = white
+    static let backgroundSecondary = primary10
+    static let backgroundTertiary = neutral20
 
-    static let error = ColorToken(
-        light: UIColor(hex: "#FF3B30"),
-        dark: UIColor(hex: "#FF453A")
-    )
-
-    static let info = ColorToken(
-        light: UIColor(hex: "#5856D6"),
-        dark: UIColor(hex: "#5E5CE6")
-    )
-
-    // MARK: - Background Colors
-    static let background = ColorToken(
-        light: UIColor(hex: "#FFFFFF"),
-        dark: UIColor(hex: "#000000")
-    )
-
-    static let backgroundSecondary = ColorToken(
-        light: UIColor(hex: "#F2F2F7"),
-        dark: UIColor(hex: "#1C1C1E")
-    )
-
-    static let backgroundTertiary = ColorToken(
-        light: UIColor(hex: "#FFFFFF"),
-        dark: UIColor(hex: "#2C2C2E")
-    )
-
-    // MARK: - Text Colors
-    static let textPrimary = ColorToken(
-        light: UIColor(hex: "#000000"),
-        dark: UIColor(hex: "#FFFFFF")
-    )
-
-    static let textSecondary = ColorToken(
-        light: UIColor(hex: "#3C3C43", alpha: 0.6),
-        dark: UIColor(hex: "#EBEBF5", alpha: 0.6)
-    )
-
-    static let textTertiary = ColorToken(
-        light: UIColor(hex: "#3C3C43", alpha: 0.3),
-        dark: UIColor(hex: "#EBEBF5", alpha: 0.3)
-    )
+    // MARK: - Legacy / Text Aliases
+    static let textPrimary = neutral100
+    static let textSecondary = neutral70
+    static let textTertiary = neutral60
 
     // MARK: - Border Colors
-    static let border = ColorToken(
-        light: UIColor(hex: "#3C3C43", alpha: 0.12),
-        dark: UIColor(hex: "#545458", alpha: 0.65)
-    )
+    static let border = neutral40
 
     // MARK: - Helper Methods
     static func color(for colorToken: ColorToken) -> UIColor {
@@ -96,6 +61,16 @@ struct DesignSystemColors {
 struct ColorToken {
     let light: UIColor
     let dark: UIColor
+
+    init(light: UIColor, dark: UIColor) {
+        self.light = light
+        self.dark = dark
+    }
+
+    init(asset: ColorAsset) {
+        self.light = asset.color
+        self.dark = asset.color
+    }
 
     var uiColor: UIColor {
         DesignSystemColors.color(for: self)
@@ -133,4 +108,9 @@ extension Color {
     static let primaryColor = DesignSystemColors.primary.color
     static let successColor = DesignSystemColors.success.color
     static let errorColor = DesignSystemColors.error.color
+    
+    // New Figma Colors
+    static let neutral100 = DesignSystemColors.neutral100.color
+    static let neutral70 = DesignSystemColors.neutral70.color
+    static let semanticWarning = DesignSystemColors.warning.color
 }

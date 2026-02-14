@@ -14,86 +14,77 @@ struct DesignSystemTypography {
         case system = "System"
         case sfProDisplay = "SFProDisplay"
         case sfProText = "SFProText"
+        case poppins = "Poppins"
 
         func font(size: CGFloat, weight: UIFont.Weight) -> UIFont {
             switch self {
             case .system:
                 return .systemFont(ofSize: size, weight: weight)
-            case .sfProDisplay, .sfProText:
-                return UIFont(name: "\(rawValue)-\(weight.name)", size: size)
+            case .sfProDisplay, .sfProText, .poppins:
+                let weightName = weight == .regular ? "Regular" : (weight == .semibold ? "SemiBold" : (weight == .medium ? "Medium" : weight.name))
+                return UIFont(name: "\(rawValue)-\(weightName)", size: size)
                     ?? .systemFont(ofSize: size, weight: weight)
             }
         }
     }
 
     // MARK: - Text Styles - Headers
-    static let largeTitle = TextStyle(
-        font: FontFamily.system.font(size: 34, weight: .bold),
-        lineHeight: 41,
-        letterSpacing: 0.37
-    )
-
     static let title1 = TextStyle(
-        font: FontFamily.system.font(size: 28, weight: .bold),
-        lineHeight: 34,
-        letterSpacing: 0.36
+        font: FontFamily.poppins.font(size: 24, weight: .semibold),
+        lineHeight: 32,
+        letterSpacing: 0
     )
 
     static let title2 = TextStyle(
-        font: FontFamily.system.font(size: 22, weight: .bold),
+        font: FontFamily.poppins.font(size: 20, weight: .semibold),
         lineHeight: 28,
-        letterSpacing: 0.35
+        letterSpacing: 0
     )
 
     static let title3 = TextStyle(
-        font: FontFamily.system.font(size: 20, weight: .semibold),
-        lineHeight: 25,
-        letterSpacing: 0.38
+        font: FontFamily.poppins.font(size: 18, weight: .semibold),
+        lineHeight: 24,
+        letterSpacing: 0
     )
 
     // Body
-    static let body = TextStyle(
-        font: FontFamily.system.font(size: 17, weight: .regular),
-        lineHeight: 22,
-        letterSpacing: -0.41
+    static let body1 = TextStyle(
+        font: FontFamily.poppins.font(size: 16, weight: .medium),
+        lineHeight: 24,
+        letterSpacing: 0
     )
 
-    static let bodyBold = TextStyle(
-        font: FontFamily.system.font(size: 17, weight: .semibold),
-        lineHeight: 22,
-        letterSpacing: -0.41
+    static let body2 = TextStyle(
+        font: FontFamily.poppins.font(size: 16, weight: .regular),
+        lineHeight: 24,
+        letterSpacing: 0
     )
 
-    static let callout = TextStyle(
-        font: FontFamily.system.font(size: 16, weight: .regular),
-        lineHeight: 21,
-        letterSpacing: -0.32
+    static let body3 = TextStyle(
+        font: FontFamily.poppins.font(size: 14, weight: .medium),
+        lineHeight: 20,
+        letterSpacing: 0
     )
 
     // Small Text
-    static let subheadline = TextStyle(
-        font: FontFamily.system.font(size: 15, weight: .regular),
-        lineHeight: 20,
-        letterSpacing: -0.24
-    )
-
-    static let footnote = TextStyle(
-        font: FontFamily.system.font(size: 13, weight: .regular),
-        lineHeight: 18,
-        letterSpacing: -0.08
-    )
-
     static let caption1 = TextStyle(
-        font: FontFamily.system.font(size: 12, weight: .regular),
+        font: FontFamily.poppins.font(size: 12, weight: .semibold),
         lineHeight: 16,
         letterSpacing: 0
     )
 
     static let caption2 = TextStyle(
-        font: FontFamily.system.font(size: 11, weight: .regular),
-        lineHeight: 13,
-        letterSpacing: 0.07
+        font: FontFamily.poppins.font(size: 10, weight: .medium),
+        lineHeight: 14,
+        letterSpacing: 0
     )
+    // MARK: - Legacy Aliases
+    static let largeTitle = title1
+    static let body = body2
+    static let bodyBold = body1
+    static let callout = body3
+    static let subheadline = body3
+    static let footnote = caption1
 }
 
 // MARK: - TextStyle Model
