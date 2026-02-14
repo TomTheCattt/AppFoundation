@@ -4,14 +4,14 @@ import Foundation
 @main
 struct SwiftGenPlugin: BuildToolPlugin {
     func createBuildCommands(context: PluginContext, target: Target) async throws -> [Command] {
-        let swiftgenConfigPath = context.package.directory.appending(subpath: "Sources/AppFoundationResources/Generated/SwiftGen/swiftgen.yml")
+        let swiftgenConfigPath = context.package.directory.appending(subpath: "swiftgen.yml")
         
         guard FileManager.default.fileExists(atPath: swiftgenConfigPath.string) else {
-            Diagnostics.warning("SwiftGen config not found at \(swiftgenConfigPath.string), skipping code generation")
+            Diagnostics.warning("SwiftGen config not found at root, skipping code generation")
             return []
         }
         
-        let outputPath = context.pluginWorkDirectory.appending(subpath: "GeneratedAssets.swift")
+        let outputPath = context.pluginWorkDirectory.appending(subpath: "GeneratedFiles.swift")
         
         return [
             .buildCommand(
@@ -35,14 +35,14 @@ import XcodeProjectPlugin
 
 extension SwiftGenPlugin: XcodeBuildToolPlugin {
     func createBuildCommands(context: XcodePluginContext, target: XcodeTarget) throws -> [Command] {
-        let swiftgenConfigPath = context.xcodeProject.directory.appending(subpath: "Sources/AppFoundationResources/Generated/SwiftGen/swiftgen.yml")
+        let swiftgenConfigPath = context.xcodeProject.directory.appending(subpath: "swiftgen.yml")
         
         guard FileManager.default.fileExists(atPath: swiftgenConfigPath.string) else {
-            Diagnostics.warning("SwiftGen config not found, skipping code generation")
+            Diagnostics.warning("SwiftGen config not found at root, skipping code generation")
             return []
         }
         
-        let outputPath = context.pluginWorkDirectory.appending(subpath: "GeneratedAssets.swift")
+        let outputPath = context.pluginWorkDirectory.appending(subpath: "GeneratedFiles.swift")
         
         return [
             .buildCommand(
