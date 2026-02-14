@@ -19,6 +19,12 @@ jobs:
       
       - name: Show Xcode Version
         run: xcodebuild -version
+
+      - name: Install SwiftGen
+        run: brew install swiftgen
+      
+      - name: Run SwiftGen
+        run: swiftgen config run --config Sources/AppFoundationResources/Generated/SwiftGen/swiftgen.yml
       
       - name: Build and Test
         run: |

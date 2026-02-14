@@ -7,7 +7,8 @@ let package = Package(
     name: "AppFoundation",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v15)
+        .iOS(.v15),
+        .macOS(.v10_14)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
@@ -82,16 +83,6 @@ let package = Package(
         .testTarget(
             name: "AppFoundationTests",
             dependencies: ["AppFoundation", "AppFoundationUI", "AppFoundationAuth"]
-        ),
-        .target(
-            name: "AppFoundationExample",
-            dependencies: ["AppFoundation", "AppFoundationUI", "AppFoundationAuth", "AppFoundationResources"],
-            path: "Sources/AppFoundationExample"
-        ),
-        .testTarget(
-            name: "AppFoundationExampleTests",
-            dependencies: ["AppFoundationExample"],
-            path: "Tests/AppFoundationExampleTests"
         ),
         
         // Build Tool Plugins

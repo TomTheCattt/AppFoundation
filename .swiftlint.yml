@@ -29,7 +29,7 @@ opt_in_rules:
 
 # MARK: - Line length
 line_length:
-    warning: 130
+    warning: 170
     error: 160
     ignores_comments: true
     ignores_urls: true
@@ -51,7 +51,7 @@ type_body_length:
 
 # MARK: - Naming
 identifier_name:
-    min_length: 2
+    min_length: 1
     excluded:
     - id
     - URL

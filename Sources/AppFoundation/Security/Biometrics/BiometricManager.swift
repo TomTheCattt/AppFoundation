@@ -32,6 +32,7 @@ public final class BiometricManager {
         case .none: return .none
         case .touchID: return .touchID
         case .faceID: return .faceID
+        case .opticID: return .unknown
         @unknown default: return .unknown
         }
     }

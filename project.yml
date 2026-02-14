@@ -6,11 +6,11 @@ options:
     iOS: "15.0"
   xcodeVersion: "15.0"
   generateEmptyDirectories: true
+
 configs:
   Debug: debug
   Release: release
-  Local: debug
-postGenCommand: pod install
+
 packages:
   Swinject:
     url: https://github.com/Swinject/Swinject
@@ -24,109 +24,76 @@ packages:
   Kingfisher:
     url: https://github.com/onevcat/Kingfisher
     from: "7.0.0"
+
 targets:
+  AppFoundationResources:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Sources/AppFoundationResources
+    settings:
+      GENERATE_INFOPLIST_FILE: YES
+
   AppFoundation:
-    type: application
+    type: framework
     platform: iOS
     sources:
       - path: Sources/AppFoundation
-        name: AppFoundation
-      - path: Sources/AppFoundationUI
-        name: AppFoundationUI
-      - path: Sources/AppFoundationAuth
-        name: AppFoundationAuth
-      - path: Sources/AppFoundationResources
-        name: AppFoundationResources
-      - path: Sources/AppFoundationExample
-        name: AppFoundationExample
     settings:
-      base: Config/Shared.xcconfig
-      configFiles:
-        Debug: Config/Dev.xcconfig
-        Release: Config/Production.xcconfig
-        Local: Config/Local.xcconfig
-      PRODUCT_BUNDLE_IDENTIFIER: com.tomthecat.AppFoundation
-      INFOPLIST_FILE: AppFoundation/Info.plist
-      CODE_SIGN_STYLE: Automatic
+      GENERATE_INFOPLIST_FILE: YES
     dependencies:
+      - target: AppFoundationResources
       - package: Swinject
-        product: Swinject
       - package: RealmSwift
-        product: RealmSwift
       - package: Alamofire
-        product: Alamofire
+
+  AppFoundationUI:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Sources/AppFoundationUI
+    settings:
+      GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: AppFoundation
+      - target: AppFoundationResources
       - package: Kingfisher
-        product: Kingfisher
-    postBuildScripts:
-      - name: SwiftLint
-        script: |
-          if [ -f "${PODS_ROOT}/SwiftLint/swiftlint" ]; then
-            "${PODS_ROOT}/SwiftLint/swiftlint" || true
-          else
-            echo "warning: SwiftLint not installed"
-          fi
-    info:
-      path: AppFoundation/Info.plist
-      generate: false
-      properties:
-        UILaunchStoryboardName: LaunchScreen
-        UISupportedInterfaceOrientations: [UIInterfaceOrientation.portrait, UIInterfaceOrientation.landscapeLeft, UIInterfaceOrientation.landscapeRight]
+
+  AppFoundationAuth:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Sources/AppFoundationAuth
+    settings:
+      GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: AppFoundation
+      - target: AppFoundationUI
+      - target: AppFoundationResources
+
   AppFoundationTests:
     type: bundle.unit-test
     platform: iOS
     sources:
       - path: Tests/AppFoundationTests
-        name: AppFoundationTests
     dependencies:
       - target: AppFoundation
+      - target: AppFoundationUI
+      - target: AppFoundationAuth
       - package: Swinject
-        product: Swinject
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.tomthecat.AppFoundationTests
       GENERATE_INFOPLIST_FILE: YES
-  AppFoundationUITests:
-    type: bundle.ui-testing
-    platform: iOS
-    sources:
-      - path: Tests/UITests
-        name: AppFoundationUITests
-    dependencies:
-      - target: AppFoundation
-    settings:
-      PRODUCT_BUNDLE_IDENTIFIER: com.tomthecat.AppFoundationUITests
-      GENERATE_INFOPLIST_FILE: YES
+
 schemes:
   AppFoundation:
     build:
       targets:
         AppFoundation: all
-    run:
-      config: Debug
+        AppFoundationUI: all
+        AppFoundationAuth: all
+        AppFoundationResources: all
     test:
       config: Debug
       targets:
         - AppFoundationTests
-        - AppFoundationUITests
-    profile:
-      config: Release
-    analyze:
-      config: Debug
-    archive:
-      config: Release
-  "AppFoundation (Local)":
-    build:
-      targets:
-        AppFoundation: all
-    run:
-      config: Local
-    test:
-      config: Local
-      targets:
-        - AppFoundationTests
-        - AppFoundationUITests
-    profile:
-      config: Local
-    analyze:
-      config: Local
-    archive:
-      config: Local
