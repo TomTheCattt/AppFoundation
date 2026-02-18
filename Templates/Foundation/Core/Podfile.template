@@ -8,6 +8,7 @@ def core_pods
   pod 'Alamofire', '~> 5.9.1'
   pod 'Swinject', '~> 2.9.1'
   pod 'Kingfisher', '~> 7.12.0'
+  # pod 'RealmSwift'
 end
 
 target 'AppFoundationUI' do
@@ -35,6 +36,7 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '{{DEPLOYMENT_TARGET}}'
+      config.build_settings['SWIFT_STRICT_CONCURRENCY'] = 'minimal'
     end
   end
   
