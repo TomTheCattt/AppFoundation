@@ -9,6 +9,7 @@ def core_pods
   pod 'Swinject', '~> 2.9.1'
   pod 'Kingfisher', '~> 7.12.0'
   # pod 'RealmSwift'
+  # pod 'SQLite.swift', '~> 0.15.3'
 end
 
 target 'AppFoundationUI' do
