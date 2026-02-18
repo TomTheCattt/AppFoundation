@@ -2,7 +2,9 @@ platform :ios, '{{DEPLOYMENT_TARGET}}'
 use_frameworks!
 
 # Shared configuration
-install! 'cocoapods', :disable_input_output_paths => true
+install! 'cocoapods', 
+  :disable_input_output_paths => true,
+  :based_on_dependency_analysis => false
 
 def core_pods
   pod 'Alamofire', '~> 5.9.1'
