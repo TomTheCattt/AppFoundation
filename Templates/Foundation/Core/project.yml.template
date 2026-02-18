@@ -78,20 +78,6 @@ targets:
             swiftlint
           fi
         name: SwiftLint
-      - script: |
-          if [ -f "${PODS_ROOT}/SwiftGen/bin/swiftgen" ]; then
-            "${PODS_ROOT}/SwiftGen/bin/swiftgen" config run --config swiftgen.yml
-          else
-            echo "warning: SwiftGen not found in Pods, falling back to system"
-            swiftgen config run --config swiftgen.yml
-          fi
-        name: SwiftGen
-        inputFiles:
-          - $(SRCROOT)/Foundation/Resources/Localization/en.lproj/Localizable.strings
-          - $(SRCROOT)/Foundation/Resources/Assets.xcassets
-        outputFiles:
-          - $(SRCROOT)/Foundation/Generated/Strings+Generated.swift
-          - $(SRCROOT)/Foundation/Generated/Assets+Generated.swift
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: {{BUNDLE_ID}}
       CODE_SIGN_ENTITLEMENTS: App/{{PROJECT_NAME}}.entitlements
