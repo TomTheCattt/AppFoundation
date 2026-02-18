@@ -1,16 +1,47 @@
 import UIKit
+import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
-    func scene(_ scene: UIScene,轉轉轉 willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        let viewController = ViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
-        window.rootViewController = navigationController
+        
+        // HYBRID SETUP: Choose your root view controller
+        // Option 1: Standard UIKit (Default)
+        let rootViewController = makeUIKitRoot()
+        
+        // Option 2: Hybrid SwiftUI Root
+        // let rootViewController = makeSwiftUIRoot()
+        
+        window.rootViewController = rootViewController
         self.window = window
         window.makeKeyAndVisible()
+    }
+    
+    // MARK: - Root View Factories
+    
+    private func makeUIKitRoot() -> UIViewController {
+        let viewController = ViewController()
+        return UINavigationController(rootViewController: viewController)
+    }
+    
+    private func makeSwiftUIRoot() -> UIViewController {
+        // Example of a SwiftUI Root
+        struct HybridRootView: View {
+            var body: some View {
+                VStack {
+                    Image(systemName: "swift")
+                        .font(.largeTitle)
+                        .foregroundColor(.orange)
+                    Text("Hello from SwiftUI in Hybrid App!")
+                        .font(.title2)
+                }
+            }
+        }
+        
+        return UIHostingController(rootView: HybridRootView())
     }
 }

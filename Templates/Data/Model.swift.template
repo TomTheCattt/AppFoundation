@@ -1,0 +1,14 @@
+//
+//  {{MODEL_NAME}}.swift
+//  {{PROJECT_NAME}}
+//
+
+import Foundation
+
+public struct {{MODEL_NAME}}: Codable, Identifiable, Hashable {
+    public let id: String
+    
+    public init(id: String = UUID().uuidString) {
+        self.id = id
+    }
+}

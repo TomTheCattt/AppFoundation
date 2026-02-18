@@ -1,19 +1,47 @@
 import UIKit
+import SwiftUI
 
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         
+        setupUI()
+    }
+    
+    private func setupUI() {
         let label = UILabel()
         label.text = "Hello, {{PROJECT_NAME}}!"
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         
+        let hybridButton = UIButton(type: .system)
+        hybridButton.setTitle("Open SwiftUI View", for: .normal)
+        hybridButton.addTarget(self, action: #selector(openSwiftUI), for: .touchUpInside)
+        hybridButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(hybridButton)
+        
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
+            
+            hybridButton.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20),
+            hybridButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+    }
+    
+    @objc private func openSwiftUI() {
+        struct DetailView: View {
+            var body: some View {
+                Text("This is a SwiftUI View presented from UIKit!")
+                    .padding()
+                    .background(Color.blue.opacity(0.1))
+                    .cornerRadius(10)
+            }
+        }
+        
+        let hostingController = UIHostingController(rootView: DetailView())
+        present(hostingController, animated: true)
     }
 }

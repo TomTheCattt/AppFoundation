@@ -1,0 +1,37 @@
+//
+//  {{MODEL_NAME}}Tests.swift
+//  {{PROJECT_NAME}}Tests
+//
+
+import XCTest
+@testable import {{PROJECT_NAME}}
+
+class {{MODEL_NAME}}Tests: XCTestCase {
+    
+    func test_{{MODEL_NAME_LOWER}}_decoding() throws {
+        // Given
+        let json = """
+        {
+            "id": "test-id"
+        }
+        """.data(using: .utf8)!
+        
+        // When
+        let model = try JSONDecoder().decode({{MODEL_NAME}}.self, from: json)
+        
+        // Then
+        XCTAssertEqual(model.id, "test-id")
+    }
+    
+    func test_{{MODEL_NAME_LOWER}}_encoding() throws {
+        // Given
+        let model = {{MODEL_NAME}}(id: "test-id")
+        
+        // When
+        let data = try JSONEncoder().encode(model)
+        let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+        
+        // Then
+        XCTAssertEqual(json?["id"] as? String, "test-id")
+    }
+}
