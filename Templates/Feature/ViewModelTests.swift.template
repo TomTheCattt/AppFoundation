@@ -1,0 +1,57 @@
+//
+//  {{FEATURE_NAME}}ViewModelTests.swift
+//  {{PROJECT_NAME}}Tests
+//
+
+import XCTest
+import Combine
+@testable import {{PROJECT_NAME}}
+
+class {{FEATURE_NAME}}ViewModelTests: XCTestCase {
+    
+    var viewModel: {{FEATURE_NAME}}ViewModel!
+    var mockUseCase: Mock{{FEATURE_NAME}}UseCase!
+    var cancellables: Set<AnyCancellable>!
+    
+    override func setUp() {
+        super.setUp()
+        mockUseCase = Mock{{FEATURE_NAME}}UseCase()
+        viewModel = {{FEATURE_NAME}}ViewModel(useCase: mockUseCase)
+        cancellables = []
+    }
+    
+    override func tearDown() {
+        viewModel = nil
+        mockUseCase = nil
+        cancellables = nil
+        super.tearDown()
+    }
+    
+    func test_loadData_updatesStateToLoading() {
+        // Given
+        let expectation = XCTestExpectation(description: "State changes to loading")
+        
+        viewModel.$state
+            .dropFirst()
+            .sink { state in
+                if case .loading = state {
+                    expectation.fulfill()
+                }
+            }
+            .store(in: &cancellables)
+        
+        // When
+        viewModel.loadData()
+        
+        // Then
+        wait(for: [expectation], timeout: 1.0)
+    }
+}
+
+// MARK: - Mocks
+class Mock{{FEATURE_NAME}}UseCase: {{FEATURE_NAME}}UseCaseProtocol {
+    var executeCalled = false
+    func execute() {
+        executeCalled = true
+    }
+}

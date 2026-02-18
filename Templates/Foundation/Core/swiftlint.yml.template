@@ -1,0 +1,38 @@
+included:
+  - App
+  - Foundation
+  - Features
+
+excluded:
+  - Pods
+  - DerivedData
+  - Generated
+
+disabled_rules:
+  - trailing_whitespace
+  - todo
+  - force_cast
+
+line_length:
+  warning: 150
+  error: 170
+
+file_length:
+  warning: 500
+  error: 700
+
+identifier_name:
+  min_length: 1
+  excluded:
+    - id
+    - URL
+    - x
+    - y
+    - r
+    - g
+    - b
+
+type_name:
+  min_length: 2
+
+reporter: "xcode"

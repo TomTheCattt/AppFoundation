@@ -1,0 +1,23 @@
+{
+    "name": "core.network",
+    "version": "1.0.0",
+    "description": "HTTP networking layer with Alamofire and request/response interceptors",
+    "dependencies": [],
+    "pods": [
+        "Alamofire (~> 5.8)"
+    ],
+    "files": [
+        "NetworkManager.swift",
+        "NetworkManagerProtocol.swift",
+        "RequestInterceptor.swift",
+        "ResponseHandler.swift",
+        "NetworkError.swift",
+        "Endpoints/APIEndpoint.swift"
+    ],
+    "tests": [
+        "NetworkManagerTests.swift"
+    ],
+    "documentation": "Docs/Modules/Network.md",
+    "minIOSVersion": "16.0",
+    "swiftVersion": "5.9"
+}

@@ -1,0 +1,43 @@
+{
+    "name": "auth",
+    "version": "1.0.0",
+    "description": "Authentication feature with login, register, and biometric support",
+    "architecture": "MVVM-Clean",
+    "dependencies": [
+        "core.network",
+        "core.storage",
+        "core.di"
+    ],
+    "layers": {
+        "data": [
+            "AuthRepository.swift",
+            "AuthRemoteDataSource.swift",
+            "AuthLocalDataSource.swift"
+        ],
+        "domain": [
+            "AuthRepositoryProtocol.swift",
+            "LoginUseCase.swift",
+            "RegisterUseCase.swift"
+        ],
+        "presentation": [
+            "LoginViewModel.swift",
+            "LoginView.swift",
+            "RegisterViewModel.swift",
+            "RegisterView.swift"
+        ],
+        "di": [
+            "AuthAssembly.swift"
+        ]
+    },
+    "tests": {
+        "unit": [
+            "LoginViewModelTests.swift",
+            "LoginUseCaseTests.swift"
+        ],
+        "ui": [
+            "LoginFlowTests.swift"
+        ]
+    },
+    "minIOSVersion": "16.0",
+    "swiftVersion": "5.9"
+}

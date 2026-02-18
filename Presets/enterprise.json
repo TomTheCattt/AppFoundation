@@ -1,0 +1,29 @@
+{
+    "name": "enterprise",
+    "description": "Enterprise-grade iOS app with all features",
+    "modules": [
+        "core.network",
+        "core.storage.realm",
+        "core.di",
+        "core.concurrency",
+        "ui.designsystem",
+        "ui.components"
+    ],
+    "features": [
+        "auth",
+        "profile",
+        "payment"
+    ],
+    "tests": [
+        "unit",
+        "ui",
+        "integration"
+    ],
+    "deployment_target": "16.0",
+    "framework": "swiftui",
+    "advanced": {
+        "analytics": true,
+        "crashReporting": true,
+        "remoteConfig": true
+    }
+}

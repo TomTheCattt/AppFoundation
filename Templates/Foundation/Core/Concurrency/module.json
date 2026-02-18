@@ -1,0 +1,15 @@
+{
+    "name": "core.concurrency",
+    "version": "1.0.0",
+    "description": "Swift 6 concurrency utilities with actor-based task management",
+    "dependencies": [],
+    "pods": [],
+    "files": [
+        "TaskCoordinator.swift",
+        "SyncManager.swift"
+    ],
+    "tests": [],
+    "documentation": "Docs/Modules/Concurrency.md",
+    "minIOSVersion": "16.0",
+    "swiftVersion": "5.9"
+}

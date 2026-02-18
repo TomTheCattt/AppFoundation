@@ -1,0 +1,26 @@
+//
+//  {{FEATURE_NAME}}View.swift
+//  {{PROJECT_NAME}}
+//
+
+import SwiftUI
+
+public struct {{FEATURE_NAME}}View: View {
+    
+    @StateObject var viewModel: {{FEATURE_NAME}}ViewModel
+    
+    public init(viewModel: {{FEATURE_NAME}}ViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+    
+    public var body: some View {
+        VStack {
+            Text("Welcome to {{FEATURE_NAME}}")
+                .font(.title)
+            
+            Button("Load Data") {
+                viewModel.loadData()
+            }
+        }
+    }
+}

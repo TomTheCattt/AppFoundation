@@ -1,0 +1,29 @@
+//
+//  {{FEATURE_NAME}}Assembly.swift
+//  {{PROJECT_NAME}}
+//
+//  Created by Project Factory.
+//
+
+import Swinject
+
+public struct {{FEATURE_NAME}}Assembly: Assembly {
+    public init() {}
+    
+    public func assemble(container: Container) {
+        // Domain
+        container.register({{FEATURE_NAME}}UseCaseProtocol.self) { _ in
+            {{FEATURE_NAME}}UseCase(repository: container.resolve({{FEATURE_NAME}}RepositoryProtocol.self)!)
+        }
+        
+        // Data
+        container.register({{FEATURE_NAME}}RepositoryProtocol.self) { _ in
+            {{FEATURE_NAME}}Repository()
+        }
+        
+        // Presentation
+        container.register({{FEATURE_NAME}}ViewModel.self) { r in
+            {{FEATURE_NAME}}ViewModel(useCase: r.resolve({{FEATURE_NAME}}UseCaseProtocol.self)!)
+        }
+    }
+}

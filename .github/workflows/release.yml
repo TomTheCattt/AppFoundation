@@ -1,0 +1,21 @@
+# Release – build for release (optional: archive, upload)
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Resolve SPM
+        run: xcodebuild -resolvePackageDependencies -scheme BaseIOSApp -project BaseIOSApp.xcodeproj
+      - name: Build for release
+        run: xcodebuild build -scheme BaseIOSApp -configuration Release -destination 'generic/platform=iOS' -quiet CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO 2>&1 || true
+      - name: Upload build (optional)
+        if: success()
+        run: echo "Add upload step (TestFlight, artifact) as needed"

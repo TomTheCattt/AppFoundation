@@ -1,0 +1,150 @@
+name: {{PROJECT_NAME}}
+options:
+  bundleIdPrefix: {{BUNDLE_ID_PREFIX}}
+  deploymentTarget:
+    iOS: "{{DEPLOYMENT_TARGET}}"
+  xcodeVersion: "16.0"
+
+targets:
+  AppFoundationUI:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Foundation
+    preBuildScripts:
+      - script: |
+          if [ -f "${PODS_ROOT}/SwiftGen/bin/swiftgen" ]; then
+            "${PODS_ROOT}/SwiftGen/bin/swiftgen" config run --config swiftgen.yml
+          else
+            echo "warning: SwiftGen not found in Pods, falling back to system"
+            swiftgen config run --config swiftgen.yml
+          fi
+        name: SwiftGen
+        inputFiles:
+          - $(SRCROOT)/Foundation/Resources/Localization/en.lproj/Localizable.strings
+          - $(SRCROOT)/Foundation/Resources/Assets.xcassets
+        outputFiles:
+          - $(SRCROOT)/Foundation/Generated/Strings+Generated.swift
+          - $(SRCROOT)/Foundation/Generated/Assets+Generated.swift
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: {{BUNDLE_ID}}.AppFoundationUI
+      GENERATE_INFOPLIST_FILE: YES
+      SKIP_INSTALL: YES
+      FRAMEWORK_SEARCH_PATHS: $(inherited)
+      HEADER_SEARCH_PATHS: $(inherited)
+      OTHER_LDFLAGS: $(inherited)
+      TARGETED_DEVICE_FAMILY: "1,2"
+      SUPPORTS_MACCATALYST: NO
+      SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+      DEVELOPMENT_TEAM: "{{DEVELOPMENT_TEAM}}"
+      PROVISIONING_PROFILE_SPECIFIER: "{{PROVISIONING_PROFILE}}"
+
+  AppFeatures:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Features
+        excludes:
+          - "**/*Tests/*.swift"
+    dependencies:
+      - target: AppFoundationUI
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: {{BUNDLE_ID}}.AppFeatures
+      GENERATE_INFOPLIST_FILE: YES
+      SKIP_INSTALL: YES
+      FRAMEWORK_SEARCH_PATHS: $(inherited)
+      HEADER_SEARCH_PATHS: $(inherited)
+      OTHER_LDFLAGS: $(inherited)
+      TARGETED_DEVICE_FAMILY: "1,2"
+      SUPPORTS_MACCATALYST: NO
+      SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+      DEVELOPMENT_TEAM: "{{DEVELOPMENT_TEAM}}"
+      PROVISIONING_PROFILE_SPECIFIER: "{{PROVISIONING_PROFILE}}"
+
+  {{PROJECT_NAME}}:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+    dependencies:
+      - target: AppFoundationUI
+      - target: AppFeatures
+    preBuildScripts:
+      - script: |
+          if [ -f "${PODS_ROOT}/SwiftLint/swiftlint" ]; then
+            "${PODS_ROOT}/SwiftLint/swiftlint"
+          else
+            echo "warning: SwiftLint not found in Pods, falling back to system"
+            swiftlint
+          fi
+        name: SwiftLint
+      - script: |
+          if [ -f "${PODS_ROOT}/SwiftGen/bin/swiftgen" ]; then
+            "${PODS_ROOT}/SwiftGen/bin/swiftgen" config run --config swiftgen.yml
+          else
+            echo "warning: SwiftGen not found in Pods, falling back to system"
+            swiftgen config run --config swiftgen.yml
+          fi
+        name: SwiftGen
+        inputFiles:
+          - $(SRCROOT)/Foundation/Resources/Localization/en.lproj/Localizable.strings
+          - $(SRCROOT)/Foundation/Resources/Assets.xcassets
+        outputFiles:
+          - $(SRCROOT)/Foundation/Generated/Strings+Generated.swift
+          - $(SRCROOT)/Foundation/Generated/Assets+Generated.swift
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: {{BUNDLE_ID}}
+      CODE_SIGN_ENTITLEMENTS: App/{{PROJECT_NAME}}.entitlements
+      GENERATE_INFOPLIST_FILE: YES
+      INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+      INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+      INFOPLIST_KEY_UILaunchScreen_Generation: YES
+      FRAMEWORK_SEARCH_PATHS: $(inherited)
+      HEADER_SEARCH_PATHS: $(inherited)
+      OTHER_LDFLAGS: $(inherited)
+      TARGETED_DEVICE_FAMILY: "1,2"
+      SUPPORTS_MACCATALYST: NO
+      SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+      DEVELOPMENT_TEAM: "{{DEVELOPMENT_TEAM}}"
+      PROVISIONING_PROFILE_SPECIFIER: "{{PROVISIONING_PROFILE}}"
+
+  AppFeaturesTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests/UnitTests
+      - path: Features
+        include:
+          - "**/*Tests/*.swift"
+    dependencies:
+      - target: AppFeatures
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: {{BUNDLE_ID}}Tests
+      GENERATE_INFOPLIST_FILE: YES
+      FRAMEWORK_SEARCH_PATHS: $(inherited)
+      HEADER_SEARCH_PATHS: $(inherited)
+      OTHER_LDFLAGS: $(inherited)
+      TARGETED_DEVICE_FAMILY: "1,2"
+      SUPPORTS_MACCATALYST: NO
+      SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+      DEVELOPMENT_TEAM: "{{DEVELOPMENT_TEAM}}"
+      PROVISIONING_PROFILE_SPECIFIER: "{{PROVISIONING_PROFILE}}"
+
+  {{PROJECT_NAME}}UITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: Tests/UITests
+    dependencies:
+      - target: {{PROJECT_NAME}}
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: {{BUNDLE_ID}}UITests
+      GENERATE_INFOPLIST_FILE: YES
+      FRAMEWORK_SEARCH_PATHS: $(inherited)
+      HEADER_SEARCH_PATHS: $(inherited)
+      OTHER_LDFLAGS: $(inherited)
+      TARGETED_DEVICE_FAMILY: "1,2"
+      SUPPORTS_MACCATALYST: NO
+      SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+      DEVELOPMENT_TEAM: "{{DEVELOPMENT_TEAM}}"
+      PROVISIONING_PROFILE_SPECIFIER: "{{PROVISIONING_PROFILE}}"

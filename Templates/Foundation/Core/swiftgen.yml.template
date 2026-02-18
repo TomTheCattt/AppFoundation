@@ -1,0 +1,19 @@
+input_dir: Foundation/Resources
+output_dir: Foundation/Generated
+
+strings:
+  inputs: Localization/en.lproj/Localizable.strings
+  outputs:
+    - templateName: structured-swift5
+      params:
+        publicAccess: true
+      output: Strings+Generated.swift
+
+xcassets:
+  inputs: Assets.xcassets
+  outputs:
+    - templateName: swift5
+      params:
+        publicAccess: true
+        bundle: Bundle.appFoundationResources
+      output: Assets+Generated.swift

@@ -1,0 +1,32 @@
+name: iOS CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Select Xcode
+      run: sudo xcode-select -s /Applications/Xcode_15.0.app
+
+    - name: Install dependencies
+      run: |
+        if [ -f "Podfile" ]; then
+          pod install
+        fi
+
+    - name: Run Unit Tests
+      run: |
+        xcodebuild test \
+          -workspace {{PROJECT_NAME}}.xcworkspace \
+          -scheme {{PROJECT_NAME}} \
+          -destination 'platform=iOS Simulator,name=iPhone 15'

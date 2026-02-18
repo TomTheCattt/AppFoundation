@@ -1,0 +1,17 @@
+{
+    "name": "ui.designsystem",
+    "version": "1.0.0",
+    "description": "Design tokens and theming system",
+    "dependencies": [],
+    "pods": [],
+    "files": [
+        "Tokens/Colors.swift",
+        "Tokens/Typography.swift",
+        "Tokens/Spacing.swift",
+        "Tokens/Shadows.swift"
+    ],
+    "tests": [],
+    "documentation": "Docs/Modules/DesignSystem.md",
+    "minIOSVersion": "16.0",
+    "swiftVersion": "5.9"
+}

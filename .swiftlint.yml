@@ -1,0 +1,81 @@
+# MARK: - Paths
+included:
+    - Sources
+    - App
+
+excluded:
+    - Pods
+    - Carthage
+    - DerivedData
+    - Generated
+    - Scripts
+    - Build
+
+# MARK: - Disabled rules
+disabled_rules:
+    - trailing_whitespace
+    - todo
+    - force_cast
+    - large_tuple
+
+# MARK: - Opt-in rules
+opt_in_rules:
+    - empty_count
+    - closure_spacing
+    - explicit_init
+    - first_where
+    - sorted_imports
+    - vertical_whitespace_closing_braces
+
+# MARK: - Line length
+line_length:
+    warning: 150
+    error: 170
+    ignores_comments: true
+    ignores_urls: true
+
+# MARK: - File length
+file_length:
+    warning: 400
+    error: 600
+
+# MARK: - Function body length
+function_body_length:
+    warning: 40
+    error: 80
+
+# MARK: - Type body length
+type_body_length:
+    warning: 300
+    error: 500
+
+# MARK: - Naming
+identifier_name:
+    min_length: 1
+    excluded:
+    - id
+    - URL
+    - x
+    - y
+    - r
+    - g
+    - b
+    - v
+    - l
+
+type_name:
+    min_length: 3
+    max_length: 50
+
+
+# MARK: - Cyclomatic complexity
+cyclomatic_complexity:
+    warning: 10
+    error: 20
+
+# MARK: - Nesting
+nesting:
+    type_level: 3
+
+# MARK: - Reporter
+reporter: "xcode"

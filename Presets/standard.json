@@ -1,0 +1,21 @@
+{
+    "name": "standard",
+    "description": "Standard iOS app with common features",
+    "modules": [
+        "core.network",
+        "core.storage.realm",
+        "core.di",
+        "core.concurrency",
+        "ui.designsystem"
+    ],
+    "features": [
+        "auth",
+        "profile"
+    ],
+    "tests": [
+        "unit",
+        "ui"
+    ],
+    "deployment_target": "16.0",
+    "framework": "swiftui"
+}

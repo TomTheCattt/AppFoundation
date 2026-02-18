@@ -1,0 +1,23 @@
+//
+//  {{FEATURE_NAME}}ViewModel.swift
+//  {{PROJECT_NAME}}
+//
+
+import Foundation
+import AppFoundationUI
+
+public class {{FEATURE_NAME}}ViewModel: ObservableObject {
+    
+    private let useCase: {{FEATURE_NAME}}UseCaseProtocol
+    
+    @Published public var state: ViewState = .idle
+    
+    public init(useCase: {{FEATURE_NAME}}UseCaseProtocol) {
+        self.useCase = useCase
+    }
+    
+    public func loadData() {
+        state = .loading
+        // Business logic here
+    }
+}

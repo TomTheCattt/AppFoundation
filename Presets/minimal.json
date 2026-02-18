@@ -1,0 +1,15 @@
+{
+    "name": "minimal",
+    "description": "Minimal iOS app - Network + Storage only",
+    "modules": [
+        "core.network",
+        "core.storage.json",
+        "core.di"
+    ],
+    "features": [],
+    "tests": [
+        "unit"
+    ],
+    "deployment_target": "16.0",
+    "framework": "swiftui"
+}

@@ -1,0 +1,25 @@
+//
+//  {{FEATURE_NAME}}ViewController.swift
+//  {{PROJECT_NAME}}
+//
+
+import UIKit
+
+public class {{FEATURE_NAME}}ViewController: UIViewController {
+    
+    var viewModel: {{FEATURE_NAME}}ViewModel!
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        setupUI()
+    }
+    
+    private func setupUI() {
+        let label = UILabel()
+        label.text = "Welcome to {{FEATURE_NAME}}"
+        label.textAlignment = .center
+        label.frame = view.bounds
+        view.addSubview(label)
+    }
+}
